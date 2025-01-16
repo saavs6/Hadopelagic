@@ -11,6 +11,7 @@ TagManager:
   - LocoText
   - Box
   - Sliceable
+  - Hand
   layers:
   - Default
   - TransparentFX

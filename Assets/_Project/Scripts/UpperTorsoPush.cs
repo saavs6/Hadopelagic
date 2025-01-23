@@ -69,14 +69,14 @@ public class UpperTorsoPush : MonoBehaviour
         while (elapsedTime < dashDuration)
         {
             // Move the player in the dash direction
-            ovrCameraRigRigidbody.velocity = dashDirection * dashSpeed;
+            ovrCameraRigRigidbody.linearVelocity = dashDirection * dashSpeed;
 
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
         // Stop the dash
-        ovrCameraRigRigidbody.velocity = Vector3.zero;
+        ovrCameraRigRigidbody.linearVelocity = Vector3.zero;
         isDashing = false;
     }
 }

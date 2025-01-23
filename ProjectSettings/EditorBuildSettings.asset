@@ -9,14 +9,15 @@ EditorBuildSettings:
     path: Assets/_Project/Scenes/TestingScene1.unity
     guid: 6450b84e9ec0643189b3cc6607d95a89
   - enabled: 0
-    path: Assets/Samples/Meta Movement/69.0.0/Body Tracking Samples/Scenes/MovementHighFidelity.unity
+    path: Assets/Samples/Meta Movement/71.0.1/Body Tracking Samples/Scenes/MovementHighFidelity.unity
     guid: 95d70f1c0a626c449881b1b4260b6b9d
   - enabled: 1
     path: Assets/_Project/Scenes/SwordArmsTesting.unity
     guid: 2e0e666e9b30047eeb7632afec2625e4
   - enabled: 0
-    path: Assets/Samples/Meta Movement/69.0.0/Body Tracking Samples/Scenes/MovementRetargeting.unity
+    path: Assets/Samples/Meta Movement/71.0.1/Body Tracking Samples/Scenes/MovementRetargeting.unity
     guid: fc2df0dac4e954244b6cd75ecbed5530
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: cac9bd384ddfc42fe843e33c3a8919e4, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 31d394fb08f364a9ea3b96d795ab3646, type: 2}
+  m_UseUCBPForAssetBundles: 0

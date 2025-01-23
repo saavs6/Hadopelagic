@@ -28,7 +28,7 @@ public class MeshSlicer : MonoBehaviour
         }
 
         // Capture the original velocity and angular velocity before slicing
-        Vector3 originalVelocity = originalRigidbody != null ? originalRigidbody.velocity : Vector3.zero;
+        Vector3 originalVelocity = originalRigidbody != null ? originalRigidbody.linearVelocity : Vector3.zero;
         Vector3 originalAngularVelocity = originalRigidbody != null ? originalRigidbody.angularVelocity : Vector3.zero;
 
         // Temporarily disable the Rigidbody to prevent collision response
@@ -91,7 +91,7 @@ public class MeshSlicer : MonoBehaviour
 
         // Add a Rigidbody to the new piece
         Rigidbody hullRigidbody = hullObject.AddComponent<Rigidbody>();
-        hullRigidbody.velocity = inheritedVelocity; // Apply inherited velocity
+        hullRigidbody.linearVelocity = inheritedVelocity; // Apply inherited velocity
         hullRigidbody.angularVelocity = inheritedAngularVelocity; // Apply inherited angular velocity
 
         // Apply a separation force

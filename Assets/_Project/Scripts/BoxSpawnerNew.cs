@@ -6,7 +6,7 @@ public class BoxSpawnerNew : MonoBehaviour
 {
     public GameObject boxPrefab;
     public float spawnInterval = 2f;
-    public Vector3 spawnAreaSize = new Vector3(10f, 1f, 10f);
+    public Vector3 spawnAreaSize = new Vector3(25f, 25f, 25f);
 
     void Start()
     {
@@ -21,7 +21,9 @@ public class BoxSpawnerNew : MonoBehaviour
             Random.Range(-spawnAreaSize.z / 2, spawnAreaSize.z / 2)
         );
 
-        Instantiate(boxPrefab, randomPosition, Quaternion.identity);
+        
+        GameObject newBox = Instantiate(boxPrefab, randomPosition, Quaternion.identity);
+        newBox.AddComponent<MoveTowardsPlayer>();
     }
 
     void OnDrawGizmos()

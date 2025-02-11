@@ -17,8 +17,15 @@ public class MoveTowardsPlayer : MonoBehaviour
     {
         if (player != null)
         {
-            // Move the box toward the player's position
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("hitbox1")) // Ensure the player has the "Player" tag
+        {
+            Debug.Log("Box touched the hitbox!");
+            Destroy(gameObject); // Destroy the box
         }
     }
 }

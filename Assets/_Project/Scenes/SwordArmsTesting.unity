@@ -1149,6 +1149,10 @@ PrefabInstance:
       propertyPath: m_Effectors.Array.data[2].m_Style.color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6123252871959200369, guid: 566315f3a83d28341a878d894d4feca3, type: 3}
+      propertyPath: m_TagString
+      value: hitbox1
+      objectReference: {fileID: 0}
     - target: {fileID: 6420542372804934625, guid: 566315f3a83d28341a878d894d4feca3, type: 3}
       propertyPath: m_TagString
       value: Hand
@@ -1182,6 +1186,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6123252871959200369, guid: 566315f3a83d28341a878d894d4feca3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 645097920}
+    - targetCorrespondingSourceObject: {fileID: 6123252871959200369, guid: 566315f3a83d28341a878d894d4feca3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 645097927}
   m_SourcePrefab: {fileID: 100100000, guid: 566315f3a83d28341a878d894d4feca3, type: 3}
 --- !u!114 &645097916 stripped
 MonoBehaviour:
@@ -1263,6 +1270,27 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!135 &645097927
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645097918}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.8
+  m_Center: {x: -0.000013291836, y: 1.2224764, z: -0.018987626}
 --- !u!4 &680518975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8225710287138210605, guid: 566315f3a83d28341a878d894d4feca3, type: 3}

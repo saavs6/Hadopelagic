@@ -5,7 +5,7 @@ using UnityEngine;
 public class BoxSpawnerNew : MonoBehaviour
 {
     public GameObject boxPrefab;
-    public float spawnInterval = 2f;
+    public float spawnInterval = 10f;
     public Vector3 spawnAreaSize = new Vector3(25f, 25f, 25f);
 
     void Start()

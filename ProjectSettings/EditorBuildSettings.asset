@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/Meta Movement/71.0.1/Body Tracking Samples/Scenes/MovementHighFidelity.unity
     guid: 95d70f1c0a626c449881b1b4260b6b9d
-  - enabled: 0
+  - enabled: 1
     path: Assets/_Project/Scenes/SwordArmsTesting.unity
     guid: 2e0e666e9b30047eeb7632afec2625e4
   - enabled: 0
     path: Assets/Samples/Meta Movement/71.0.1/Body Tracking Samples/Scenes/MovementRetargeting.unity
     guid: fc2df0dac4e954244b6cd75ecbed5530
-  - enabled: 1
+  - enabled: 0
     path: Assets/AQUAS-Lite/Demo/DEMO.unity
     guid: e1118907227ce9744a7cf18c2710396e
   m_configObjects:

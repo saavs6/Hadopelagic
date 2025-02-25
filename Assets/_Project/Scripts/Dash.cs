@@ -7,7 +7,7 @@ public class DualControllerDashMovement : MonoBehaviour
     public Transform player; // The player's transform (XR Rig)
     public XRNode leftControllerNode = XRNode.LeftHand;
     public XRNode rightControllerNode = XRNode.RightHand;
-    public float movementMultiplier = 2.0f; // Adjust for movement scaling
+    public float movementMultiplier = 5.0f; // Adjust for movement scaling
     public float smoothingFactor = 0.1f; // Smoothing movement
     public ConsoleEdit output;
 
@@ -24,57 +24,75 @@ public class DualControllerDashMovement : MonoBehaviour
         output.UpdateText("Console Output: Dash Assigned!");
     }
 
-    void Update()
+void Update()
+{
+    if (player == null) return;
+
+    bool leftGrabbing = IsGrabbing(leftControllerNode);
+    bool rightGrabbing = IsGrabbing(rightControllerNode);
+
+    InputDevice leftDevice = InputDevices.GetDeviceAtXRNode(leftControllerNode);
+    InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(rightControllerNode);
+
+    Vector3 leftPosition = Vector3.zero, rightPosition = Vector3.zero;
+    bool leftHasPosition = leftDevice.TryGetFeatureValue(CommonUsages.devicePosition, out leftPosition);
+    bool rightHasPosition = rightDevice.TryGetFeatureValue(CommonUsages.devicePosition, out rightPosition);
+
+    if (leftGrabbing && !isLeftDashing && leftHasPosition)
     {
-        if (player == null) return;
+        initialLeftPosition = leftPosition;
+        isLeftDashing = true;
+    }
+    else if (!leftGrabbing && isLeftDashing)
+    {
+        isLeftDashing = false;
+    }
 
-        bool leftGrabbing = IsGrabbing(leftControllerNode);
-        bool rightGrabbing = IsGrabbing(rightControllerNode);
+    if (rightGrabbing && !isRightDashing && rightHasPosition)
+    {
+        initialRightPosition = rightPosition;
+        isRightDashing = true;
+    }
+    else if (!rightGrabbing && isRightDashing)
+    {
+        isRightDashing = false;
+    }
 
-        InputDevice leftDevice = InputDevices.GetDeviceAtXRNode(leftControllerNode);
-        InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(rightControllerNode);
+    if (isLeftDashing || isRightDashing)
+    {
+        output.UpdateText("Dash Attempted!");
+        Vector3 displacement = Vector3.zero;
 
-        Vector3 leftPosition = Vector3.zero, rightPosition = Vector3.zero;
-        bool leftHasPosition = leftDevice.TryGetFeatureValue(CommonUsages.devicePosition, out leftPosition);
-        bool rightHasPosition = rightDevice.TryGetFeatureValue(CommonUsages.devicePosition, out rightPosition);
-
-        if (leftGrabbing && !isLeftDashing && leftHasPosition)
+        if (isLeftDashing && leftHasPosition)
         {
-            initialLeftPosition = leftPosition;
-            isLeftDashing = true;
+            Vector3 leftDisplacement = initialLeftPosition - leftPosition;
+            if (leftDisplacement.magnitude > 0.01f) // Threshold to detect significant movement
+            {
+                displacement += leftDisplacement;
+                initialLeftPosition = leftPosition; // Update initial position for continuous movement
+            }
         }
-        else if (!leftGrabbing && isLeftDashing)
+
+        if (isRightDashing && rightHasPosition)
         {
-            isLeftDashing = false;
+            Vector3 rightDisplacement = initialRightPosition - rightPosition;
+            if (rightDisplacement.magnitude > 0.01f) // Threshold to detect significant movement
+            {
+                displacement += rightDisplacement;
+                initialRightPosition = rightPosition; // Update initial position for continuous movement
+            }
         }
 
-        if (rightGrabbing && !isRightDashing && rightHasPosition)
+        if (displacement != Vector3.zero)
         {
-            initialRightPosition = rightPosition;
-            isRightDashing = true;
-        }
-        else if (!rightGrabbing && isRightDashing)
-        {
-            isRightDashing = false;
-        }
-
-        if (isLeftDashing || isRightDashing)
-        {
-            output.UpdateText("Dash Attempted!");
-            Vector3 displacement = Vector3.zero;
-
-            if (isLeftDashing && leftHasPosition)
-                displacement += initialLeftPosition - leftPosition;
-
-            if (isRightDashing && rightHasPosition)
-                displacement += initialRightPosition - rightPosition;
-
             Vector3 targetPosition = player.position + (displacement * movementMultiplier);
 
-            // Apply smooth movement
-            player.position = Vector3.SmoothDamp(player.position, targetPosition, ref velocity, smoothingFactor);
+            // Apply the relative displacement to the player's position
+            // Use SmoothDamp for smoother movement
+            player.position = targetPosition;
         }
     }
+}
 
     bool IsGrabbing(XRNode controllerNode)
     {

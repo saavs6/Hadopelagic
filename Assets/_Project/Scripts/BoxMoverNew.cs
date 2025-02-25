@@ -38,7 +38,7 @@ public class MoveCircle : MovePattern
         angle += speed * Time.deltaTime;
         Vector3 circlePos = centerPoint + new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
         box.transform.position = Vector3.MoveTowards(box.transform.position, circlePos, speed * Time.deltaTime);
-        
+        box.transform.position = Vector3.MoveTowards(box.transform.position, player.transform.position, speed * Time.deltaTime);
     }
 }
 
@@ -76,6 +76,7 @@ public class MoveTowardsPlayer : MonoBehaviour
         } else {
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezePosition;
+            rb.freezeRotation = true;
         }
 
         
@@ -89,8 +90,12 @@ public class MoveTowardsPlayer : MonoBehaviour
                 return new MoveStraight();
             case 1:
                 Vector3 randomOffset = new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
-                Vector3 orbitCenter = worldCenter + randomOffset;
-                float radius = Random.Range(3f, 9f);
+                Vector3 orbitCenter = (player.transform.position + gameObject.transform.position)/2;
+
+                float radius = Mathf.Sqrt(Mathf.Pow(player.transform.position.x - gameObject.transform.position.x, 2)+
+                Mathf.Pow(player.transform.position.y - gameObject.transform.position.y, 2)+
+                Mathf.Pow(player.transform.position.z - gameObject.transform.position.z, 2))/2;
+
                 return new MoveCircle(orbitCenter, radius);
             default:
                 return new MoveStraight();

@@ -1,98 +1,84 @@
 using UnityEngine;
 using UnityEngine.XR;
-using TMPro;
 
 public class DualControllerDashMovement : MonoBehaviour
-{
-    public Transform player; // The player's transform (XR Rig)
+{     
+    public Rigidbody playerRb;
     public XRNode leftControllerNode = XRNode.LeftHand;
     public XRNode rightControllerNode = XRNode.RightHand;
-    public float movementMultiplier = 5.0f; // Adjust for movement scaling
-    public float smoothingFactor = 0.1f; // Smoothing movement
-    public ConsoleEdit output;
 
+    public float preDashCoefficient = 1.0f; // Smoother initial speed buildup
+    public float dragCoefficient = 1.0f;    // Gradual deceleration (adjust as needed)
+    public float dashSmoothTime = 0.3f;     // Time to smooth the dash speed transition
 
-    private bool isLeftDashing = false;
-    private bool isRightDashing = false;
+    private Vector3 startPos;
+    private float startTime;
 
-    private Vector3 initialLeftPosition;
-    private Vector3 initialRightPosition;
-    private Vector3 velocity = Vector3.zero;
+    private bool isLeftGrabbing;
+    private bool isRightGrabbing;
 
-    void Start()
+    private bool preDash;
+    private Vector3 currentVelocity = Vector3.zero;
+
+    void Update()
     {
-        output.UpdateText("Console Output: Dash Assigned!");
-    }
+        bool newLeftGrabbing = IsGrabbing(leftControllerNode);
+        bool newRightGrabbing = IsGrabbing(rightControllerNode);
 
-void Update()
-{
-    if (player == null) return;
-
-    bool leftGrabbing = IsGrabbing(leftControllerNode);
-    bool rightGrabbing = IsGrabbing(rightControllerNode);
-
-    InputDevice leftDevice = InputDevices.GetDeviceAtXRNode(leftControllerNode);
-    InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(rightControllerNode);
-
-    Vector3 leftPosition = Vector3.zero, rightPosition = Vector3.zero;
-    bool leftHasPosition = leftDevice.TryGetFeatureValue(CommonUsages.devicePosition, out leftPosition);
-    bool rightHasPosition = rightDevice.TryGetFeatureValue(CommonUsages.devicePosition, out rightPosition);
-
-    if (leftGrabbing && !isLeftDashing && leftHasPosition)
-    {
-        initialLeftPosition = leftPosition;
-        isLeftDashing = true;
-    }
-    else if (!leftGrabbing && isLeftDashing)
-    {
-        isLeftDashing = false;
-    }
-
-    if (rightGrabbing && !isRightDashing && rightHasPosition)
-    {
-        initialRightPosition = rightPosition;
-        isRightDashing = true;
-    }
-    else if (!rightGrabbing && isRightDashing)
-    {
-        isRightDashing = false;
-    }
-
-    if (isLeftDashing || isRightDashing)
-    {
-        output.UpdateText("Dash Attempted!");
-        Vector3 displacement = Vector3.zero;
-
-        if (isLeftDashing && leftHasPosition)
+        // Trigger the preDash when the user first grabs
+        if ((!isLeftGrabbing && newLeftGrabbing) || (!isRightGrabbing && newRightGrabbing)) 
         {
-            Vector3 leftDisplacement = initialLeftPosition - leftPosition;
-            if (leftDisplacement.magnitude > 0.01f) // Threshold to detect significant movement
+            startPos = transform.position;
+            startTime = Time.time;
+            preDash = true;
+        }
+
+        // Perform dash when user releases the grab
+        if ((isLeftGrabbing && !newLeftGrabbing) || (isRightGrabbing && !newRightGrabbing)) 
+        {
+            Dash();
+        }
+
+        isLeftGrabbing = newLeftGrabbing;
+        isRightGrabbing = newRightGrabbing;
+    }
+
+    void FixedUpdate()
+    {   
+        if (preDash) 
+        {
+            // Smooth pre-dash acceleration
+            Vector3 targetVelocity = preDashCoefficient * (transform.position - startPos).normalized;
+            playerRb.linearVelocity = Vector3.SmoothDamp(playerRb.linearVelocity, targetVelocity, ref currentVelocity, dashSmoothTime);
+        } 
+        else if (playerRb.linearVelocity != Vector3.zero) 
+        {
+            // Gradual deceleration
+            Vector3 dragForce = -dragCoefficient * Mathf.Pow(playerRb.linearVelocity.magnitude, 2) * playerRb.linearVelocity.normalized;
+            playerRb.AddForce(dragForce, ForceMode.Force);
+
+            // Smooth stop when the velocity is close to zero
+            if (playerRb.linearVelocity.magnitude < 0.1f)
             {
-                displacement += leftDisplacement;
-                initialLeftPosition = leftPosition; // Update initial position for continuous movement
+                playerRb.linearVelocity = Vector3.zero;
             }
         }
+    }
 
-        if (isRightDashing && rightHasPosition)
+    void Dash() 
+    {
+        preDash = false;
+        Vector3 endPos = transform.position;
+        float duration = Time.time - startTime;
+
+        if (duration > 0.1f) 
         {
-            Vector3 rightDisplacement = initialRightPosition - rightPosition;
-            if (rightDisplacement.magnitude > 0.01f) // Threshold to detect significant movement
-            {
-                displacement += rightDisplacement;
-                initialRightPosition = rightPosition; // Update initial position for continuous movement
-            }
-        }
-
-        if (displacement != Vector3.zero)
-        {
-            Vector3 targetPosition = player.position + (displacement * movementMultiplier);
-
-            // Apply the relative displacement to the player's position
-            // Use SmoothDamp for smoother movement
-            player.position = targetPosition;
+            // Smooth dash force calculation over time
+            Vector3 dashVelocity = (endPos - startPos) / duration;
+            Vector3 dashForce = playerRb.mass * dashVelocity / duration;
+            playerRb.AddForce(dashForce, ForceMode.Impulse);
         }
     }
-}
 
     bool IsGrabbing(XRNode controllerNode)
     {
@@ -100,9 +86,7 @@ void Update()
 
         bool frontTriggerPressed = device.TryGetFeatureValue(CommonUsages.triggerButton, out bool triggerValue) && triggerValue;
         bool sideGripPressed = device.TryGetFeatureValue(CommonUsages.gripButton, out bool gripValue) && gripValue;
-        bool buttonPressed = (device.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryValue) && primaryValue) ||
-                             (device.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryValue) && secondaryValue);
 
-        return frontTriggerPressed && sideGripPressed && buttonPressed;
+        return frontTriggerPressed && sideGripPressed;
     }
 }

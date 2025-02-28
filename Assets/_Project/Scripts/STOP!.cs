@@ -7,5 +7,6 @@ public class STOP : MonoBehaviour
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezePosition;
+        rb.freezeRotation = true;
     }
 }

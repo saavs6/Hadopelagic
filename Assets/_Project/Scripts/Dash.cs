@@ -83,10 +83,8 @@ public class DualControllerDashMovement : MonoBehaviour
     bool IsGrabbing(XRNode controllerNode)
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(controllerNode);
-
-        bool frontTriggerPressed = device.TryGetFeatureValue(CommonUsages.triggerButton, out bool triggerValue) && triggerValue;
         bool sideGripPressed = device.TryGetFeatureValue(CommonUsages.gripButton, out bool gripValue) && gripValue;
 
-        return frontTriggerPressed && sideGripPressed;
+        return sideGripPressed;
     }
 }

@@ -1,12 +1,12 @@
 # ninja log v5
-40	304	7609429462847168	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	dcbe38239213b15d
-306	456	7609429464378479	C:/Users/seanc/XR/GTXR_Hadopelagic/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/2c3y5x58/obj/arm64-v8a/libswappywrapper.so	e928897fa011f501
-19	935	7609429469075130	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9c1f5c70ec2b2332
-1	939	7609429469135510	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	a348d9652c071528
-34	944	7609429469189422	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	74e8a5f7d4266b08
-28	967	7609429469447359	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	681cbb600db483a
-5	991	7609429469708935	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2b572b7c6e59125
-14	1020	7609429469975168	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	bf2ca9866734920b
-23	1032	7609429470100914	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b45fd818bcc84158
-10	1080	7609429470576395	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8a60a593e3cfe68e
-1081	1192	7609429471738488	C:/Users/seanc/XR/GTXR_Hadopelagic/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/2c3y5x58/obj/arm64-v8a/libgame.so	6ab75db251ada558
+41	331	7621501772237739	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	dcbe38239213b15d
+333	505	7621501773961910	C:/Users/seanc/XR/GTXR_Hadopelagic/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/2c3y5x58/obj/arm64-v8a/libswappywrapper.so	e928897fa011f501
+25	997	7621501778885888	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9c1f5c70ec2b2332
+0	1012	7621501779002566	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	a348d9652c071528
+30	1024	7621501779130180	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	74e8a5f7d4266b08
+35	1034	7621501779225269	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	681cbb600db483a
+6	1070	7621501779603793	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	2b572b7c6e59125
+20	1090	7621501779817937	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	bf2ca9866734920b
+15	1113	7621501780051998	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	b45fd818bcc84158
+11	1161	7621501780502929	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8a60a593e3cfe68e
+1161	1270	7621501781642618	C:/Users/seanc/XR/GTXR_Hadopelagic/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/2c3y5x58/obj/arm64-v8a/libgame.so	6ab75db251ada558

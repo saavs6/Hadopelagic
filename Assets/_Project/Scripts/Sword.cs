@@ -10,7 +10,7 @@ public class Sword : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Box")) // Ensure the boxes are tagged as \"Box\"
+        if (other.CompareTag("Box") || other.CompareTag("Sliceable")) // Ensure the boxes are tagged as \"Box\"
         {
             Vector3 contactPoint = other.ClosestPoint(transform.position);
             Vector3 normal = transform.forward; // Assume slicing plane is along the sword's forward direction

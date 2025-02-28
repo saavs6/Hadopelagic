@@ -97,12 +97,8 @@ void Update()
     bool IsGrabbing(XRNode controllerNode)
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(controllerNode);
-
-        bool frontTriggerPressed = device.TryGetFeatureValue(CommonUsages.triggerButton, out bool triggerValue) && triggerValue;
         bool sideGripPressed = device.TryGetFeatureValue(CommonUsages.gripButton, out bool gripValue) && gripValue;
-        bool buttonPressed = (device.TryGetFeatureValue(CommonUsages.primaryButton, out bool primaryValue) && primaryValue) ||
-                             (device.TryGetFeatureValue(CommonUsages.secondaryButton, out bool secondaryValue) && secondaryValue);
 
-        return frontTriggerPressed && sideGripPressed && buttonPressed;
+        return sideGripPressed;
     }
 }

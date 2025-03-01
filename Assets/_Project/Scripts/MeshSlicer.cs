@@ -82,6 +82,9 @@ public class MeshSlicer : MonoBehaviour
 
         MeshRenderer meshRenderer = hullObject.AddComponent<MeshRenderer>();
         meshRenderer.materials = originalObject.GetComponent<MeshRenderer>().materials;
+        
+        //change the layer to whatever it was in the previous object
+        hullObject.layer = originalObject.layer;
 
         // Apply the cutMaterial if it's available
         if (cutMaterial != null)

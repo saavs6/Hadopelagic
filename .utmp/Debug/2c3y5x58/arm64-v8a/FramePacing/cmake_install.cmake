@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/seanc/XR/GTXR_Hadopelagic/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/src/main/cpp/FramePacing
+# Install script for directory: C:/Users/seanc/XR/GTXR_Hadopelagic/Library/PramData/AndroidApplicationController/Cache/com.DefaultCompany.GTXR_Hadopelagic_v1/gradle-project/unityLibrary/src/main/cpp/FramePacing
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

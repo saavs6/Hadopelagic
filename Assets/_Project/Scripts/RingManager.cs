@@ -9,7 +9,7 @@ public class Ring
     public Vector3 basis2;            // Second axis of the ring's plane.
     public float radius;              // The current offset from the centerline.
     public float initialRadius;       // The original offset from the centerline.
-    public List<GameObject> points;   // The ring's points.
+    public List<GameObject> points;   // The ring's points (in this case, fish group GameObjects).
 
     // Constructor.
     public Ring(Transform centerlinePoint, Vector3 basis1, Vector3 basis2, float radius)
@@ -22,7 +22,7 @@ public class Ring
         points = new List<GameObject>();
     }
 
-    // Repositions the points so that they are evenly distributed around the centerline point.
+    // Repositions the points so that they are evenly distributed around the centerline.
     // Uses the originally computed basis vectors so that the ring’s plane remains fixed.
     public void RepositionPoints()
     {
@@ -67,11 +67,15 @@ public class RingManager : MonoBehaviour
     public Vector3 arbitraryUp = Vector3.up; // Used for computing the cross-sectional plane.
 
     [Header("Parenting")]
-    public Transform sharkBoss; // All ring points will be parented to this transform.
+    public Transform sharkBoss; // All ring points (and fish groups) will be parented to this transform.
+
+    [Header("Fish Group Settings")]
+    [Tooltip("Prefab for the fish group (should have FishGroupController attached)")]
+    public GameObject fishGroupPrefab;
 
     public List<Ring> rings = new List<Ring>();
 
-    // Store initial local positions of centerline points to allow resetting later.
+    // Store initial local positions of centerline points for resetting later.
     private Dictionary<Transform, Vector3> initialCenterlineLocalPositions = new Dictionary<Transform, Vector3>();
 
     void Start()
@@ -111,27 +115,42 @@ public class RingManager : MonoBehaviour
             Ring newRing = new Ring(currentCenter, basis1, basis2, ringOffset);
             rings.Add(newRing);
 
-            // Populate the ring with points.
+            // For each ring, create a fish group at each ring point.
             for (int j = 0; j < pointsPerSection; j++)
             {
                 float angle = j * (2 * Mathf.PI / pointsPerSection);
                 Vector3 offset = (Mathf.Cos(angle) * basis1 + Mathf.Sin(angle) * basis2) * ringOffset;
                 Vector3 pointPosition = currentCenter.position + offset;
-                GameObject point = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                point.transform.position = pointPosition;
-                point.transform.localScale = Vector3.one * 0.1f;
-                Destroy(point.GetComponent<Collider>());
-                // Parent the point to the SharkBoss transform.
+
+                GameObject fishGroup = null;
+                if (fishGroupPrefab != null)
+                {
+                    fishGroup = Instantiate(fishGroupPrefab, pointPosition, Quaternion.identity);
+                    // Assign the sharkBoss transform to the fish group's controller.
+                    FishGroupController controller = fishGroup.GetComponent<FishGroupController>();
+                    if (controller != null)
+                    {
+                        controller.sharkBoss = sharkBoss;
+                    }
+                }
+                else
+                {
+                    // Fallback: create a small sphere if no prefab is assigned.
+                    fishGroup = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    fishGroup.transform.localScale = Vector3.one * 0.1f;
+                    Destroy(fishGroup.GetComponent<Collider>());
+                }
+                // Parent the fish group to sharkBoss.
                 if (sharkBoss != null)
                 {
-                    point.transform.SetParent(sharkBoss);
+                    fishGroup.transform.SetParent(sharkBoss);
                 }
-                newRing.points.Add(point);
+                newRing.points.Add(fishGroup);
             }
         }
     }
 
-    // Called when a point is deleted.
+    // Called when a point (fish group) is deleted.
     public void PointDeleted(GameObject point)
     {
         foreach (Ring ring in rings)
@@ -146,8 +165,7 @@ public class RingManager : MonoBehaviour
         }
     }
 
-    // Called when a centerline point has moved.
-    // Repositions all points in the corresponding ring.
+    // Called when a centerline point has moved; repositions all points in the corresponding ring.
     public void MovePoints(Transform centerline)
     {
         foreach (Ring ring in rings)
@@ -160,7 +178,7 @@ public class RingManager : MonoBehaviour
         }
     }
 
-    // Helper function to change the distance (radius) for the ring associated with the given centerline.
+    // Changes the ring distance (radius) for the ring associated with the given centerline.
     public void ChangeRingDistance(Transform centerline, float newDistance)
     {
         foreach (Ring ring in rings)
@@ -173,7 +191,7 @@ public class RingManager : MonoBehaviour
         }
     }
 
-    // Helper function to reset the ring distance for the given centerline back to its initial offset.
+    // Resets the ring distance for the given centerline back to its initial offset.
     public void ResetRingDistance(Transform centerline)
     {
         foreach (Ring ring in rings)

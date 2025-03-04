@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BoxSpawnerNew : MonoBehaviour
 {
@@ -8,10 +9,26 @@ public class BoxSpawnerNew : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnBox), 0f, spawnInterval);
+        InvokeRepeating("SpawnMinionsHelperHelper", 1.5f, 8f);
     }
 
-    void SpawnBox()
+    void SpawnMinionsHelperHelper()
+    {
+        SpawnMinionsHelper();
+    }
+    void SpawnMinionsHelper(int numMinions = 8, float spawnTime = 0.12f, int movementType = 0)
+    {
+        for (int i = 0; i < 10; i++) {
+            StartCoroutine(spawnMinions(spawnTime, movementType));
+        }
+    }
+    IEnumerator spawnMinions(float spawnTime=0.08f, int movementType=1)
+    {
+        SpawnBox(movementType);
+        yield return new WaitForSeconds(spawnTime);
+    }
+
+    void SpawnBox(int movementCode=0)
     {
         Vector3 randomPosition = transform.position + new Vector3(
             Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2),
@@ -21,7 +38,8 @@ public class BoxSpawnerNew : MonoBehaviour
 
         
         GameObject newBox = Instantiate(boxPrefab, randomPosition, Quaternion.identity);
-        newBox.AddComponent<MoveTowardsPlayer>();
+        MoveTowardsPlayer moveScript = newBox.AddComponent<MoveTowardsPlayer>();
+        moveScript.movementPattern = moveScript.GetMovementPattern(movementCode);
     }
 
     void OnDrawGizmos()

@@ -9,6 +9,7 @@ Library: C:\Users\seanc\XR\GTXR_Hadopelagic\Temp\BurstOutput\tempburstlibs\arm64
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\Users\seanc\XR\GTXR_Hadopelagic\Temp\Burst
+--debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/6000.0.31f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\Users\seanc\XR\GTXR_Hadopelagic\Library\Burst
 --output=C:\Users\seanc\XR\GTXR_Hadopelagic\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated

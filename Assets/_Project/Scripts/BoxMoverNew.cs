@@ -48,7 +48,7 @@ public class MoveTowardsPlayer : MonoBehaviour
 
     private Transform player;
 
-    private MovePattern movementPattern;
+    public MovePattern movementPattern;
 
     public Vector3 worldCenter = Vector3.zero; //for the enemies that move in circles
 
@@ -78,11 +78,9 @@ public class MoveTowardsPlayer : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezePosition;
             rb.freezeRotation = true;
         }
-
-        
     }
 
-    private MovePattern GetMovementPattern(int pattern)
+    public MovePattern GetMovementPattern(int pattern)
     {
         switch (pattern)
         {
@@ -106,9 +104,11 @@ public class MoveTowardsPlayer : MonoBehaviour
         if (other.CompareTag("hitbox1")) // Ensure the player has the "Player" tag
         {
             stopped = true;
+            /*
             GameObject sphere1 = SpawnParrySphere();
             GameObject sphere2 = SpawnParrySphere();
             GameObject sphere3 = SpawnParrySphere();
+            */
         }
     }
     GameObject SpawnParrySphere()

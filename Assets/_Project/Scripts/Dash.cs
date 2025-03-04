@@ -1,63 +1,57 @@
 using UnityEngine;
 using UnityEngine.XR;
 
-public class DualControllerDashMovement : MonoBehaviour
+public class Dash : MonoBehaviour
 {     
     public Rigidbody playerRb;
     public XRNode leftControllerNode = XRNode.LeftHand;
     public XRNode rightControllerNode = XRNode.RightHand;
 
-    public float preDashCoefficient = 1.0f; // Smoother initial speed buildup
-    public float dragCoefficient = 1.0f;    // Gradual deceleration (adjust as needed)
-    public float dashSmoothTime = 0.3f;     // Time to smooth the dash speed transition
+    public float preDashCoefficient = 10.0f;
+    public float dragCoefficient = 10.0f;
 
     private Vector3 startPos;
     private float startTime;
 
-    private bool isLeftGrabbing;
-    private bool isRightGrabbing;
+    private bool isGrabbing;
 
     private bool preDash;
-    private Vector3 currentVelocity = Vector3.zero;
 
     void Update()
     {
-        bool newLeftGrabbing = IsGrabbing(leftControllerNode);
-        bool newRightGrabbing = IsGrabbing(rightControllerNode);
+        bool newIsGrabbing = IsGrabbing(leftControllerNode) && IsGrabbing(rightControllerNode);
 
-        // Trigger the preDash when the user first grabs
-        if ((!isLeftGrabbing && newLeftGrabbing) || (!isRightGrabbing && newRightGrabbing)) 
+        if (!isGrabbing && newIsGrabbing) 
         {
-            startPos = transform.position;
+            startPos = getPositionOnGrabs();
             startTime = Time.time;
             preDash = true;
         }
 
-        // Perform dash when user releases the grab
-        if ((isLeftGrabbing && !newLeftGrabbing) || (isRightGrabbing && !newRightGrabbing)) 
+        if (isGrabbing && !newIsGrabbing) 
         {
-            Dash();
+            StartDash();
         }
 
-        isLeftGrabbing = newLeftGrabbing;
-        isRightGrabbing = newRightGrabbing;
+        isGrabbing = newIsGrabbing;
     }
 
     void FixedUpdate()
     {   
+        
         if (preDash) 
         {
-            // Smooth pre-dash acceleration
-            Vector3 targetVelocity = preDashCoefficient * (transform.position - startPos).normalized;
-            playerRb.linearVelocity = Vector3.SmoothDamp(playerRb.linearVelocity, targetVelocity, ref currentVelocity, dashSmoothTime);
+            Vector3 deltaPos = getPositionOnGrabs() - startPos;
+            if (deltaPos.magnitude > 0.1f) {
+                Vector3 targetVelocity = preDashCoefficient * (getPositionOnGrabs() - startPos).normalized;
+                playerRb.linearVelocity = -targetVelocity;
+            }
         } 
         else if (playerRb.linearVelocity != Vector3.zero) 
         {
-            // Gradual deceleration
-            Vector3 dragForce = -dragCoefficient * Mathf.Pow(playerRb.linearVelocity.magnitude, 2) * playerRb.linearVelocity.normalized;
+            Vector3 dragForce = - dragCoefficient * Mathf.Pow(playerRb.linearVelocity.magnitude, 2) * playerRb.linearVelocity.normalized;
             playerRb.AddForce(dragForce, ForceMode.Force);
 
-            // Smooth stop when the velocity is close to zero
             if (playerRb.linearVelocity.magnitude < 0.1f)
             {
                 playerRb.linearVelocity = Vector3.zero;
@@ -65,18 +59,18 @@ public class DualControllerDashMovement : MonoBehaviour
         }
     }
 
-    void Dash() 
+    void StartDash() 
     {
         preDash = false;
-        Vector3 endPos = transform.position;
+        Vector3 endPos = getPositionOnGrabs();
         float duration = Time.time - startTime;
+        Vector3 deltaPos = endPos - startPos;
 
-        if (duration > 0.1f) 
+        if (duration > 0.1f && deltaPos.magnitude > 0.1f) 
         {
-            // Smooth dash force calculation over time
             Vector3 dashVelocity = (endPos - startPos) / duration;
             Vector3 dashForce = playerRb.mass * dashVelocity / duration;
-            playerRb.AddForce(dashForce, ForceMode.Impulse);
+            playerRb.AddForce(-dashForce, ForceMode.Impulse);
         }
     }
 
@@ -86,5 +80,17 @@ public class DualControllerDashMovement : MonoBehaviour
         bool sideGripPressed = device.TryGetFeatureValue(CommonUsages.gripButton, out bool gripValue) && gripValue;
 
         return sideGripPressed;
+    }
+
+    Vector3 getControllerPosition(XRNode controllerNode) {
+        InputDevice device = InputDevices.GetDeviceAtXRNode(controllerNode);
+        if (device.TryGetFeatureValue(CommonUsages.devicePosition, out Vector3 position)) {
+                return position;
+        }
+        return Vector3.zero;
+    }
+
+    Vector3 getPositionOnGrabs() {
+        return (getControllerPosition(leftControllerNode) + getControllerPosition(rightControllerNode)) / 2;
     }
 }

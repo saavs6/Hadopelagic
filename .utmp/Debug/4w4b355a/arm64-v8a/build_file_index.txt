@@ -1,0 +1,3 @@
+C:\Users\sujal\Documents\GTXR_Hadopelagic\Library\PramData\AndroidApplicationController\Cache\com.DefaultCompany.GTXR_Hadopelagic_v1\gradle-project\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\sujal\Documents\GTXR_Hadopelagic\Library\PramData\AndroidApplicationController\Cache\com.DefaultCompany.GTXR_Hadopelagic_v1\gradle-project\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
+C:\Users\sujal\Documents\GTXR_Hadopelagic\Library\PramData\AndroidApplicationController\Cache\com.DefaultCompany.GTXR_Hadopelagic_v1\gradle-project\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

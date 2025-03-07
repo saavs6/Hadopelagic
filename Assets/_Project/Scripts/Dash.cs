@@ -78,7 +78,6 @@ public class Dash : MonoBehaviour
     {
         InputDevice device = InputDevices.GetDeviceAtXRNode(controllerNode);
         bool sideGripPressed = device.TryGetFeatureValue(CommonUsages.gripButton, out bool gripValue) && gripValue;
-
         return sideGripPressed;
     }
 

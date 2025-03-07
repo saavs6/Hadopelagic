@@ -149,8 +149,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3f2baea77a3ff4a817aa345d4adb27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  maxSpeed: 5
-  playerDistance: 2
-  orbitSpeed: 5
-  orbitForceMultiplier: 10
+  moveForce: 5
+  moveSpeed: 4
+  playerDistance: 3
+  orbitForce: 5
+  attackForce: 6
+  attackChance: 0.05
+  attackCooldown: 3
+  attackFOVThreshold: 0.5
+  playerCamera: {fileID: 0}

@@ -15,6 +15,7 @@ public class Sword : MonoBehaviour
     {
         if (other.CompareTag("Enemy") || other.CompareTag("Sliceable")) // Ensure the boxes are tagged as \"Box\"
         {
+            output.UpdateText("Hit enemy");
             Vector3 contactPoint = other.ClosestPoint(transform.position);
             Vector3 normal = transform.forward; // Assume slicing plane is along the sword's forward direction
 
@@ -53,11 +54,6 @@ public class Sword : MonoBehaviour
                 {
                     audioSource.PlayOneShot(blockSound);
                 }
-            }
-
-            if (output != null)
-            {
-                output.UpdateText("Number of times hit:" + n);
             }
         }
     }

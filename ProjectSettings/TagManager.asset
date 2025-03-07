@@ -14,6 +14,7 @@ TagManager:
   - Hand
   - hitbox1
   - Boss
+  - Enemy
   layers:
   - Default
   - TransparentFX

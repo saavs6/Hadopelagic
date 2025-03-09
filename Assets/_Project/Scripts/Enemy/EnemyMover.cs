@@ -30,7 +30,6 @@ public class EnemyMover : MonoBehaviour
     void FixedUpdate()
     {
         if (player == null || playerCamera == null) return;
-        console.UpdateText("No Hit");
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
@@ -101,7 +100,6 @@ public class EnemyMover : MonoBehaviour
         if (other.CompareTag("hitbox1"))
         {
             // Attack reaction logic here
-            console.UpdateText("Hit");
         }
     }
 }

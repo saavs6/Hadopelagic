@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.AssetImporters;
 
 public class PlayerHealthSystem : MonoBehaviour
 {
@@ -13,10 +12,15 @@ public class PlayerHealthSystem : MonoBehaviour
     public bool immune = false;
     private Coroutine immuneCoroutine;
     private Coroutine regenCoroutine;
-    private float attackTime;
+    public float attackTime;
     public ConsoleEdit output;
     public bool alive = true;
-    
+    public AudioSource audioSource;
+    public AudioClip breakSound; // Assign your sound in the Inspector
+    public AudioClip blockSound;
+    public AudioClip regenSound;
+    public AudioClip deathSound;
+    public AudioClip deathSound2;
     
     void Start()
     {
@@ -67,11 +71,14 @@ public class PlayerHealthSystem : MonoBehaviour
             }
             else if (currentHP == 1)
             {
-                //play shield break sound
+                audioSource.PlayOneShot(breakSound);
             }
         } else if (immune)
         {
-            //play block sound
+            if (audioSource != null && blockSound != null)
+            {
+                audioSource.PlayOneShot(blockSound); // Plays the sound once
+            }
         }
         enemyDamageCoroutines.Remove(enemy); // Remove from tracking after attack
     }
@@ -89,7 +96,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (currentHP == 1)
         {
             currentHP++;
-            //play regen sound
+            audioSource.PlayOneShot(regenSound);
         }
     }
 
@@ -97,6 +104,8 @@ public class PlayerHealthSystem : MonoBehaviour
     {
         alive = false;
         enemyDamageCoroutines.Clear();
+        audioSource.PlayOneShot(deathSound);
+        audioSource.PlayOneShot(deathSound2);
         //implement further logic
         //lmfao skull emoji ekull emoji ggez krill issue
     }

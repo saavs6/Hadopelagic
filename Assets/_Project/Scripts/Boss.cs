@@ -57,7 +57,7 @@ public class Boss : MonoBehaviour
         if (direction != Vector3.zero) // Prevent NaN errors
         {
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
-            transform.Rotate(90f, 0f, 0f);
+            transform.Rotate(0f, 90f, 0f);
         }
 
         // Update the previous position

@@ -1,24 +1,75 @@
-using UnityEngine;
 using System.Collections;
+<<<<<<< Updated upstream
+using System.Collections.Generic;
+using UnityEngine;
+=======
+using System.Diagnostics;
+>>>>>>> Stashed changes
 
 public class BoxSpawnerNew : MonoBehaviour
 {
     public GameObject boxPrefab;
-    public float spawnInterval = 10f;
-    public Vector3 spawnAreaSize = new Vector3(25f, 25f, 25f);
+<<<<<<< Updated upstream
+    public float spawnInterval = 2f;
+    public Vector3 spawnAreaSize = new Vector3(10f, 1f, 10f);
 
     void Start()
     {
-        InvokeRepeating("SpawnMinionsHelperHelper", 1.5f, 8f);
+        InvokeRepeating(nameof(SpawnBox), 0f, spawnInterval);
+    }
+
+    void SpawnBox()
+=======
+    public float spawnInterval = 10f;
+    public Vector3 spawnAreaSize = new Vector3(25f, 25f, 25f);
+    public bool spawn = true;
+    private Stopwatch stopwatch;
+    private float startTime;
+    private float elapsedTime;
+    
+    
+
+    void Start()
+    {
+        InvokeRepeating("SpawnMinionsHelperHelper", 1.5f, 12f);
+        stopwatch = new Stopwatch();
+        stopwatch.Start();
+    }
+
+    void Update()
+    {
+        elapsedTime =  (float) stopwatch.Elapsed.TotalSeconds;
+        radiusDyna(elapsedTime);
+    }
+    
+    bool radiusDyna(float time)
+    {
+        if (time < 120)
+        {
+           spawn = true;
+        } else if (time > 120 && time < 167)
+        {
+            spawn = false;
+        } else if (time > 167 && time < 227)
+        {
+            spawn = true;
+        } else if (time > 227)
+        {
+            spawn = false;
+        }
+        return true;
     }
 
     void SpawnMinionsHelperHelper()
     {
-        SpawnMinionsHelper();
+        if (spawn)
+        {
+            SpawnMinionsHelper();
+        }
     }
     void SpawnMinionsHelper(int numMinions = 8, float spawnTime = 0.12f, int movementType = 0)
     {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 12; i++) {
             StartCoroutine(spawnMinions(spawnTime, movementType));
         }
     }
@@ -29,6 +80,7 @@ public class BoxSpawnerNew : MonoBehaviour
     }
 
     void SpawnBox(int movementCode=0)
+>>>>>>> Stashed changes
     {
         Vector3 randomPosition = transform.position + new Vector3(
             Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2),
@@ -36,11 +88,9 @@ public class BoxSpawnerNew : MonoBehaviour
             Random.Range(-spawnAreaSize.z / 2, spawnAreaSize.z / 2)
         );
 
-        
-        GameObject newBox = Instantiate(boxPrefab, randomPosition, Quaternion.identity);
-        MoveTowardsPlayer moveScript = newBox.AddComponent<MoveTowardsPlayer>();
-        moveScript.movementPattern = moveScript.GetMovementPattern(movementCode);
+        Instantiate(boxPrefab, randomPosition, Quaternion.identity);
     }
+    
 
     void OnDrawGizmos()
     {

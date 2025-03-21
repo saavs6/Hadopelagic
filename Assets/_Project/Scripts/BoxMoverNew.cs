@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface MovePattern
+public class BoxMoverNew : MonoBehaviour
 {
+<<<<<<< Updated upstream
+    public float speed = -5f;
+
+    void Update()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+}
+=======
     void Move(GameObject box, Transform player, float speed);
 }
 
@@ -13,6 +22,8 @@ public class MoveStraight : MovePattern
     {
         Vector3 direction = (player.position - box.transform.position).normalized;
         box.transform.position += direction * speed * Time.deltaTime;
+        box.transform.LookAt(player.position);
+        box.transform.Rotate(0, 90, 0);
     }
 }
 
@@ -39,6 +50,8 @@ public class MoveCircle : MovePattern
         Vector3 circlePos = centerPoint + new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
         box.transform.position = Vector3.MoveTowards(box.transform.position, circlePos, speed * Time.deltaTime);
         box.transform.position = Vector3.MoveTowards(box.transform.position, player.transform.position, speed * Time.deltaTime);
+        box.transform.LookAt(player.position);
+        box.transform.Rotate(0, 90, 0);
     }
 }
 
@@ -57,6 +70,11 @@ public class MoveTowardsPlayer : MonoBehaviour
     private bool stopped = false;
 
     public GameObject spherePrefab;
+    
+    public Color glowColor = Color.red; // Red glow color
+    public float glowIntensity = 10f; // Intensity of the glow
+    private Renderer enemyRenderer;
+    private Material enemyMaterial;
 
     void Start()
     {
@@ -76,7 +94,8 @@ public class MoveTowardsPlayer : MonoBehaviour
         } else {
             Rigidbody rb = GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.FreezePosition;
-            rb.freezeRotation = true;
+            transform.LookAt(player.position);
+            transform.Rotate(0, 90, 0);
         }
     }
 
@@ -99,6 +118,19 @@ public class MoveTowardsPlayer : MonoBehaviour
                 return new MoveStraight();
         }
     }
+
+    IEnumerator DangerIndicator()
+    {
+        enemyRenderer = GetComponent<Renderer>();
+        enemyMaterial = enemyRenderer.material;
+        yield return new WaitForSeconds(2f);
+        // Enable emission
+        enemyMaterial.EnableKeyword("_EMISSION");
+        enemyMaterial.SetColor("_EmissionColor", glowColor * glowIntensity);
+        yield return new WaitForSeconds(1f);
+        enemyMaterial.DisableKeyword("_EMISSION");
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("hitbox1")) // Ensure the player has the "Player" tag
@@ -179,3 +211,4 @@ public class MoveTowardsPlayer : MonoBehaviour
     }
 }
 */
+>>>>>>> Stashed changes

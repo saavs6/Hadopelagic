@@ -9,7 +9,7 @@ public class ConsoleEdit : MonoBehaviour
     {
         if (textBox == null)
         {
-            Debug.LogError("TextBox is not assigned!");
+            Debug.LogWarning("TextBox is not assigned!");
         }
     }
 

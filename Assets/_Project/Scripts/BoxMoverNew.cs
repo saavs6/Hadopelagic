@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoxMoverNew : MonoBehaviour
+//added by Nick for temporary fix. It looks like BoxMoverNew is supposed to do
+// what this class does but i just added this to be safe
+public abstract class MovePattern : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    public float speed = -5f;
-
-    void Update()
-    {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-    }
+    public abstract void Move(GameObject box, Transform player, float speed);
 }
-=======
+//end
+
+/* Commented out because Move must be an abstract method
+public abstract class BoxMoverNew : MonoBehaviour
+{
     void Move(GameObject box, Transform player, float speed);
 }
+*/
 
 public class MoveStraight : MovePattern
 {
-    public void Move(GameObject box, Transform player, float speed)
+    public override void Move(GameObject box, Transform player, float speed)
     {
         Vector3 direction = (player.position - box.transform.position).normalized;
         box.transform.position += direction * speed * Time.deltaTime;
@@ -44,7 +45,7 @@ public class MoveCircle : MovePattern
         this.radius = radius;
     }
 
-    public void Move(GameObject box, Transform player, float speed)
+    public override void Move(GameObject box, Transform player, float speed)
     {
         angle += speed * Time.deltaTime;
         Vector3 circlePos = centerPoint + new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
@@ -211,4 +212,3 @@ public class MoveTowardsPlayer : MonoBehaviour
     }
 }
 */
->>>>>>> Stashed changes

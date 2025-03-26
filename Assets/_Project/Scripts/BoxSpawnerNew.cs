@@ -1,25 +1,10 @@
-using System.Collections;
-<<<<<<< Updated upstream
-using System.Collections.Generic;
 using UnityEngine;
-=======
+using System.Collections;
 using System.Diagnostics;
->>>>>>> Stashed changes
 
 public class BoxSpawnerNew : MonoBehaviour
 {
     public GameObject boxPrefab;
-<<<<<<< Updated upstream
-    public float spawnInterval = 2f;
-    public Vector3 spawnAreaSize = new Vector3(10f, 1f, 10f);
-
-    void Start()
-    {
-        InvokeRepeating(nameof(SpawnBox), 0f, spawnInterval);
-    }
-
-    void SpawnBox()
-=======
     public float spawnInterval = 10f;
     public Vector3 spawnAreaSize = new Vector3(25f, 25f, 25f);
     public bool spawn = true;
@@ -80,7 +65,6 @@ public class BoxSpawnerNew : MonoBehaviour
     }
 
     void SpawnBox(int movementCode=0)
->>>>>>> Stashed changes
     {
         Vector3 randomPosition = transform.position + new Vector3(
             Random.Range(-spawnAreaSize.x / 2, spawnAreaSize.x / 2),

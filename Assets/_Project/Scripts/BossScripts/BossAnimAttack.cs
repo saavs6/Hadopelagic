@@ -44,8 +44,8 @@ public class BossAnimAttack : BossAttack
     /// <param name="damageBoxSize"></param>
     public override void Attack(Vector3 damageBoxOffset, bool relativeMovement, float duration, Vector3 damageBoxSize = default)
     {
-        base.Attack(damageBoxOffset, relativeMovement, duration, damageBoxSize);
         AnimationLogic();
+        base.Attack(damageBoxOffset, relativeMovement, duration, damageBoxSize);
     }
 
 }

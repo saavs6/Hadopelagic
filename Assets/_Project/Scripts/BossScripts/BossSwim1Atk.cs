@@ -17,7 +17,8 @@ public class BossSwim1Atk : BossAnimAttack
 
     public override void Attack(Vector3 damageBoxOffset, bool relativeMovement, float duration, Vector3 damageBoxSize = default)
     {
-        //Set the trigger string in the editor
+        
+        //calls animation and does logic
         base.Attack(damageBoxOffset, relativeMovement, duration, damageBoxSize);
     }
 
@@ -29,7 +30,7 @@ public class BossSwim1Atk : BossAnimAttack
     IEnumerator TriggerAttack()
     {
         yield return new WaitForSeconds(3f);
-        GetComponent<Animator>().SetTrigger(AttackTrigger);
+        Attack(Vector3.zero, false, 2f, 2 * Vector3.one);
     }
 
 }

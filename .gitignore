@@ -2,7 +2,9 @@
 #
 
 # Added by Nick, unsure of their necessity
-
+# macOS metafile
+.DS_Store
+/Assets/.DS_Store
 
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #

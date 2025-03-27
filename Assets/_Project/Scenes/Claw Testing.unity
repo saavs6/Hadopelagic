@@ -798,6 +798,10 @@ PrefabInstance:
       value: Floor
       objectReference: {fileID: 0}
     - target: {fileID: 3925386263601755969, guid: 3f4ed02e98233244eb8b67eff35f6b77, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3925386263601755969, guid: 3f4ed02e98233244eb8b67eff35f6b77, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -6273,7 +6277,7 @@ GameObject:
   - component: {fileID: 1137463531}
   m_Layer: 10
   m_Name: Lobster
-  m_TagString: Untagged
+  m_TagString: hitbox1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11852,6 +11856,8 @@ MonoBehaviour:
   spawnDelay: 0.12
   minionsPerSpawn: 8
   spawnCount: 8
+  startTime: 0
+  wave2: 0
   spawnAreaSize: {x: 25, y: 12.5, z: 12.5}
 --- !u!4 &2138298707
 Transform:

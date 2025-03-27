@@ -8,11 +8,19 @@ public class EnemySpawner : MonoBehaviour
     public float spawnDelay = 0.12f;
     public int minionsPerSpawn = 8;
     public int spawnCount = 8;
+    public float startTime;
+    public bool wave2 = false;
     public Vector3 spawnAreaSize = new Vector3(25f, 25f, 25f);
 
     void Start()
     {
+        startTime = Time.time;
         InvokeRepeating(nameof(SpawnMinions), 1.5f, spawnInterval);
+    }
+
+    void Update()
+    {
+        Debug.Log(Time.time - startTime);   
     }
 
     void SpawnMinions()

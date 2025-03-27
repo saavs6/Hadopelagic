@@ -150,11 +150,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveForce: 5
-  moveSpeed: 4
-  playerDistance: 3
+  moveSpeed: 5
+  standardDistance: 3
+  shortDistance: 1.5
+  longDistance: 4.5
   orbitForce: 5
-  attackForce: 6
-  attackChance: 0.05
+  attackForce: 8
+  attackChance: 0.1
   attackCooldown: 3
-  attackFOVThreshold: 0.5
-  playerCamera: {fileID: 0}
+  attackFOVThreshold: 0.3
+  glowColor: {r: 1, g: 0, b: 0, a: 1}
+  glowIntensity: 2
+  orbitRadius: 5
+  wave2: 0

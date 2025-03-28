@@ -7,6 +7,8 @@ public class MinionMover : BaseMover
     public float attackChance = 0.05f;
     public float attackFOVThreshold = 0.7f;
     public float attackCooldown = 3f;
+
+    public float minDistanceToPlayer = .25f;
     
     public Color glowColor = Color.red;
     public float glowIntensity = 2f;
@@ -38,7 +40,6 @@ public class MinionMover : BaseMover
         {
             MoveAwayFromPlayer();
         }
-
 
         if (!isAttacking)
         {
@@ -92,6 +93,7 @@ public class MinionMover : BaseMover
     {
         if (other.CompareTag("Player"))
         {
+            
             EnableEmission();
             Invoke(nameof(DisableEmission), 1f);
 

@@ -38,7 +38,7 @@ public class Sword : MonoBehaviour
             slicer.Slice(other.gameObject, contactPoint, normal);
             if (audioSource != null && sliceSound != null)
             {
-            audioSource.PlayOneShot(sliceSound); // Plays the sound once
+                audioSource.PlayOneShot(sliceSound); // Plays the sound once
             }
         }
         else if (other.CompareTag("Boss"))

@@ -11,7 +11,7 @@ public class BossSwim1Atk : BossAnimAttack
     {
         get
         {
-            return trigger == null ? "Attack" : trigger;
+            return trigger == null ? "Swim1Atk" : trigger;
         }
     }
 

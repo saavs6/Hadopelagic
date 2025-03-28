@@ -7,12 +7,29 @@ public class Sword : MonoBehaviour
     public AudioClip sliceSound; // Assign your sound in the Inspector
     public AudioClip blockSound;
     public ConsoleEdit output;
-    private int n = 0;
     public Boss currentBoss;
-    
+
+    private Vector3 position;
+    private bool moving;
+
+    void Start()
+    {
+        position = transform.position;
+    }
+
+    void Update()
+    {
+        Vector3 newPosition = transform.position;
+        moving = !newPosition.Equals(position);
+        position = newPosition;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if (!moving) return;
+
         if (other.CompareTag("Enemy") || other.CompareTag("Sliceable")) // Ensure the boxes are tagged as \"Box\"
         {
             Vector3 contactPoint = other.ClosestPoint(transform.position);
@@ -29,7 +46,6 @@ public class Sword : MonoBehaviour
             Vector3 contactPoint = other.ClosestPoint(transform.position);
             Vector3 normal = transform.forward;
             int result=0;
-            n += 1;
             
             if (currentBoss != null)
             {

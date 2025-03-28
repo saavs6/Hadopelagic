@@ -19,7 +19,7 @@ public class Dash : MonoBehaviour
 
     void Update()
     {
-        bool newIsGrabbing = IsGrabbing(leftControllerNode) && IsGrabbing(rightControllerNode);
+        bool newIsGrabbing = IsGrabbing(leftControllerNode) || IsGrabbing(rightControllerNode);
 
         if (!isGrabbing && newIsGrabbing) 
         {

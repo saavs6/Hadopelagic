@@ -2,6 +2,12 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+
+# Added
+.DS_Store
+.vscode/settings.json
+Assets/Resources/OculusRuntimeSettings.asset
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/

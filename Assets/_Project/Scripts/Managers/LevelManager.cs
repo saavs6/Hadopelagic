@@ -1,15 +1,17 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 {
-    
     public static LevelManager Instance { get; private set; }
 
     public float[] waveOneDistances;
 
-    float startTime;
-    int level = -1;
+    private float startTime;
+    private float songTime;
+    private Dictionary<float, Level.SongAction> currentEventsMap;
 
+    private int level = -1;
     private AudioSource musicPlayer;
 
     void Awake()
@@ -25,16 +27,20 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        musicPlayer = GetComponent<AudioSource>();
-        StartLevel(1);
+        Instance.musicPlayer = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-
+        if (currentEventsMap != null && currentEventsMap.TryGetValue(Instance.songTime, out var action))
+        {
+            Instance.songTime += Time.deltaTime;
+            action?.Invoke();
+        }
     }
 
-    public static float GetElapsedTime() {
+    public static float GetElapsedTime()
+    {
         if (Instance == null) {
             return 0f;
         }
@@ -66,9 +72,31 @@ public class LevelManager : MonoBehaviour
         return Instance.waveOneDistances[index];
     }
 
-    public static void StartLevel(int newLevel) {
+    public static void StartLevel(int newLevel)
+    {
         Instance.level = newLevel;
         Instance.startTime = Time.time;
+
+        switch (newLevel)
+        {
+            case 1:
+                Instance.SetLevel(new Level1());
+                break;
+            case 2:
+                Instance.SetLevel(new Level2());
+                break;
+            case 3:
+                Instance.SetLevel(new Level3());
+                break;
+            default:
+                Debug.LogWarning($"Level {newLevel} is not implemented.");
+                break;
+        }
     }
 
+    private void SetLevel(Level level)
+    {
+        Instance.currentEventsMap = level.GetEventsMap();
+        Instance.songTime = 0f;
+    }
 }

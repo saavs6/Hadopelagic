@@ -16,8 +16,11 @@ public class ActionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public static void SomeAction(string something)
-    {
-        // ...existing code...
+    public static void SetMinionDistance(float distance) {
+        LevelManager.Instance.minionDistance = distance;
+    }
+
+    public static void SetBossDistance(float distance) {
+        LevelManager.Instance.bossDistance = distance;
     }
 }

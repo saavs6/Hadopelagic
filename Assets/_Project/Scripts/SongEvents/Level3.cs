@@ -2,13 +2,21 @@ using System.Collections.Generic;
 
 public class Level3 : Level
 {
-    public Dictionary<float, Level.SongAction> GetEventsMap()
+    public List<SongEvent> GetEventsList()
     {
-        return new Dictionary<float, Level.SongAction>
-        {
-            { 0.0f, () => ActionManager.SomeAction("Parameter1") },
-            { 5.0f, () => ActionManager.SomeAction("Parameter2") },
-            { 10.0f, () => ActionManager.SomeAction("Parameter3") }
+        return new List<SongEvent> {
+            new SongEvent(0.0f, new Level.SongAction[] { 
+                () => ActionManager.SetMinionDistance(10.0f),
+                () => ActionManager.SetBossDistance(14.5f)
+            }),
+            new SongEvent(15.0f, new Level.SongAction[] { 
+                () => ActionManager.SetMinionDistance(1.5f),
+                () => ActionManager.SetBossDistance(3.0f)
+            }),
+            new SongEvent(30.0f, new Level.SongAction[] { 
+                () => ActionManager.SetMinionDistance(4.5f),
+                () => ActionManager.SetBossDistance(6.0f)
+            })
         };
     }
 }

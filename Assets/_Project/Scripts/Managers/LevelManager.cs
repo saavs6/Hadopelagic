@@ -1,17 +1,18 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    public float[] waveOneDistances;
+    public float minionDistance = 0f;
+    public float bossDistance = 0f;
 
-    private float startTime;
-    private float songTime;
-    private Dictionary<float, Level.SongAction> currentEventsMap;
+    public float startTime;
+    public float songTime;
+    public int level = -1;
 
-    private int level = -1;
+    private List<SongEvent> currentEventsList;
     private AudioSource musicPlayer;
 
     void Awake()
@@ -32,44 +33,25 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if (currentEventsMap != null && currentEventsMap.TryGetValue(Instance.songTime, out var action))
+        if (currentEventsList == null) return;
+        if (currentEventsList.Count == 0) return;
+        
+        SongEvent eventData = currentEventsList[0];
+        if (eventData != null && Instance.songTime >= eventData.time)
         {
-            Instance.songTime += Time.deltaTime;
-            action?.Invoke();
+            Debug.Log("Next actions");
+            currentEventsList.RemoveAt(0);
+            foreach (var action in eventData.actions)
+            {
+                action?.Invoke();
+            }
         }
+        Instance.songTime += Time.deltaTime;
     }
 
     public static float GetElapsedTime()
     {
-        if (Instance == null) {
-            return 0f;
-        }
         return Time.time - Instance.startTime;
-    }
-
-    private static int GetWaveOneMinionDistanceIndex(float elapsedTime)
-    {
-        if (elapsedTime < 15) {
-            return 1;
-        } else if (elapsedTime < 30) {
-            return 0;
-        } else {
-            return 2;
-        }
-    }
-
-    public static float GetMinionWaveOneOrbitDistance()
-    {
-        float elapsedTime = Time.time - Instance.startTime;
-        int index = GetWaveOneMinionDistanceIndex(elapsedTime);
-        return Instance.waveOneDistances[index];
-    }
-
-    public static float GetBossWaveOneOrbitDistance()
-    {
-        float elapsedTime = Time.time - Instance.startTime;
-        int index = GetWaveOneMinionDistanceIndex(elapsedTime) + 1;
-        return Instance.waveOneDistances[index];
     }
 
     public static void StartLevel(int newLevel)
@@ -96,7 +78,7 @@ public class LevelManager : MonoBehaviour
 
     private void SetLevel(Level level)
     {
-        Instance.currentEventsMap = level.GetEventsMap();
         Instance.songTime = 0f;
+        Instance.currentEventsList = level.GetEventsList();
     }
 }

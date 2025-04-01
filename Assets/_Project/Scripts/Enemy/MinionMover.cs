@@ -26,7 +26,7 @@ public class MinionMover : BaseMover
     protected override void HandleMovement()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        float orbitDistance = LevelManager.GetMinionWaveOneOrbitDistance();
+        float orbitDistance = LevelManager.Instance.minionDistance;
         float tolerance = 0.5f;
 
         float distanceRatio = Mathf.Clamp01(distanceToPlayer / 10f);

@@ -8,7 +8,7 @@ public class BossMover : BaseMover
     protected override void HandleMovement()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        float orbitDistance = LevelManager.GetBossWaveOneOrbitDistance();
+        float orbitDistance = LevelManager.Instance.bossDistance;
         float tolerance = 0.5f;
 
         float distanceRatio = Mathf.Clamp01(distanceToPlayer / 10f);

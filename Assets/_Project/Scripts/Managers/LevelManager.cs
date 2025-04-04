@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
+    public Image shieldImage;
     public float minionDistance = 0f;
     public float bossDistance = 0f;
-
+    
+    public int shieldHitPoints = 8;
+    public int maxShieldHitPoints = 8;
     public float startTime;
     public float songTime;
     public int level = -1;
@@ -29,6 +33,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         Instance.musicPlayer = GetComponent<AudioSource>();
+        UpdateShieldUI();
     }
 
     void Update()
@@ -47,6 +52,40 @@ public class LevelManager : MonoBehaviour
             }
         }
         Instance.songTime += Time.deltaTime;
+    }
+
+    // Public methods for button clicks
+    public void AddShieldButtonClick()
+    {
+        addShield(1);
+    }
+    
+    public void RemoveShieldButtonClick()
+    {
+        removeShield(1);
+    }
+
+    public static void removeShield(int hitpoints) {
+        Instance.shieldHitPoints -= hitpoints;
+        if (Instance.shieldHitPoints < 0) {
+            Instance.shieldHitPoints = 0;
+        }
+        Instance.UpdateShieldUI();
+    }
+
+    public static void addShield(int hitpoints) {
+        Instance.shieldHitPoints += hitpoints;
+        if (Instance.shieldHitPoints > 8) {
+            Instance.shieldHitPoints = 8;
+        }
+        Instance.UpdateShieldUI();
+    }
+
+    private void UpdateShieldUI() {
+        if (shieldImage != null) {
+            float fillAmount = (float) shieldHitPoints / maxShieldHitPoints;
+            shieldImage.fillAmount = Mathf.Clamp01(fillAmount);
+        }
     }
 
     public static float GetElapsedTime()
@@ -81,4 +120,5 @@ public class LevelManager : MonoBehaviour
         Instance.songTime = 0f;
         Instance.currentEventsList = level.GetEventsList();
     }
+
 }

@@ -15,11 +15,25 @@ public abstract class BossAttack : MonoBehaviour
     /// Calls PreAttack at very beginning
     /// To change parameters, remake another method of same name via overloading
     /// </summary>
-    /// <param name="damageBoxOffset">Overwrite default value in Editor. Offset from the transform's position at which to spawn the damage box.</param>
+    /// <param name="damageBoxOffset">Overwrite default value in Editor if set to Vector3.zero. Relative to boss position and rotation.
+    /// Offset from the transform's position at which to spawn the damage box.</param>
     /// <param name="relativeMovement">If true, the damage box becomes a child of this transform; otherwise, it remains independent.</param>
     /// <param name="duration">The time in seconds the damage box remains active.</param>
     /// <param name="damageBoxSize">Size of the damage box, default is unit cube</param>
     public virtual void Attack(Vector3 damageBoxOffset, bool relativeMovement, float duration, Vector3 damageBoxSize = default)
+    {
+        PlaceDamageBox(damageBoxOffset, relativeMovement, duration, damageBoxSize);
+    }
+
+
+    /// <summary>
+    /// Defines how the damage box is spawned. One use case is calling Attack and then waiting until an animation event to create the damage box.
+    /// </summary>
+    /// <param name="damageBoxOffset"></param>
+    /// <param name="relativeMovement"></param>
+    /// <param name="duration"></param>
+    /// <param name="damageBoxSize"></param>
+    protected virtual void PlaceDamageBox(Vector3 damageBoxOffset, bool relativeMovement, float duration, Vector3 damageBoxSize = default)
     {
         // Use defaultOffset if no custom offset is provided
         if (damageBoxOffset == Vector3.zero)

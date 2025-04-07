@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class BossSwim1Atk : BossAnimAttack
+public class BossSwim2Atk : BossAnimAttack
 {
+
     [Tooltip("String for trigger in this Animator triggered by attack")]
     [SerializeField] private string trigger;
 
@@ -10,20 +11,19 @@ public class BossSwim1Atk : BossAnimAttack
     {
         get
         {
-            return trigger == null ? "Swim1Atk" : trigger;
+            return trigger == null ? "Swim2Atk" : trigger;
         }
     }
 
     public override void Attack(Vector3 damageBoxOffset, bool relativeMovement, float duration, Vector3 damageBoxSize = default)
     {
-        //Base calls the animation and saves Attack's arguments into atkparams to use in animaiton event function
+        
+        //calls animation and does logic
         base.Attack(damageBoxOffset, relativeMovement, duration, damageBoxSize);
     }
 
-    /// <summary>
-    /// This is called by the animation clip as an event partway through the animation, when it reaches the attack move.
-    /// </summary>
-    public void HammerheadAttackAtkMoveNow()
+
+    public void HammerheadFastSwimmingAtkMoveNow()
     {
         PlaceDamageBox(atkParams.damageBoxOffset, atkParams.relativeMovement, atkParams.duration, atkParams.damageBoxSize);
     }
@@ -38,7 +38,7 @@ public class BossSwim1Atk : BossAnimAttack
 
     IEnumerator TriggerAttack()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(9f);
         Attack(Vector3.zero, false, 2f, 2 * Vector3.one);
     }
 

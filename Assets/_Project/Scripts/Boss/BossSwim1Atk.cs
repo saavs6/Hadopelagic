@@ -22,7 +22,7 @@ public class BossSwim1Atk : BossAnimAttack
         base.Attack(damageBoxOffset, relativeMovement, duration, damageBoxSize);
     }
 
-    void Start()
+    void Start() //test attack, todo remove later
     {
         StartCoroutine(TriggerAttack());
     }

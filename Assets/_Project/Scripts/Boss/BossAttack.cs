@@ -29,7 +29,7 @@ public abstract class BossAttack : MonoBehaviour
 
         GameObject damageBox = Instantiate(damageBoxPrefab);
 
-        // Set as child only if relative movement is required
+        // Set box as child only if relative movement is required
         if (relativeMovement)
         {
             damageBox.transform.SetParent(this.transform);

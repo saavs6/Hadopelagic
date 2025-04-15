@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Sword : MonoBehaviour
@@ -8,6 +9,7 @@ public class Sword : MonoBehaviour
     public AudioClip blockSound;
     public ConsoleEdit output;
     public Boss currentBoss;
+    public static Action<string> OnSwordHit;
 
     private Vector3 position;
     private bool moving;

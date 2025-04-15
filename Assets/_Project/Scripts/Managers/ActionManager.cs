@@ -23,4 +23,19 @@ public class ActionManager : MonoBehaviour
     public static void SetBossDistance(float distance) {
         LevelManager.Instance.bossDistance = distance;
     }
+
+    public static void SetIsAttacking(bool isAttacking)
+    {
+        LevelManager.Instance.bossAttacking = isAttacking;
+    }
+
+    public static void SetIsTailWhipping(bool isTailWhipping)
+    {
+        LevelManager.Instance.bossTailWhipping = isTailWhipping;
+    }
+
+    public static void SetIsSwarming(bool isSwarming)
+    {
+        LevelManager.Instance.swarm = isSwarming;
+    }
 }

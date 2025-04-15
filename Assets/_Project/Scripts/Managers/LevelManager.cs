@@ -8,7 +8,12 @@ public class LevelManager : MonoBehaviour
 
     public Image shieldImage;
     public float minionDistance = 0f;
+    public bool swarm = false;
+    
     public float bossDistance = 0f;
+    public bool bossAttacking = false;
+    public bool bossTailWhipping = false;
+    
     
     public int shieldHitPoints = 8;
     public int maxShieldHitPoints = 8;

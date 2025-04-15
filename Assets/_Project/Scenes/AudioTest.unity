@@ -542,8 +542,6 @@ MonoBehaviour:
   comboDrain: 10
   comboPerHit: 25
   perfectTimeThreshold: 0.06
-  <NextComboThreshold>k__BackingField: 0
-  <PrevComboThreshold>k__BackingField: 0
 --- !u!4 &613868872
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,10 +1014,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f55f7972f432674b8cc2e86c9587997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lights:
-  - {fileID: 1984820124}
-  lastBeat: 0
-  beat: 0
 --- !u!1 &1986356642
 GameObject:
   m_ObjectHideFlags: 0

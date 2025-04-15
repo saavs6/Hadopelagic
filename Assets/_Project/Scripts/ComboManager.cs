@@ -13,14 +13,14 @@ public enum ComboRank
 public class ComboManager : MonoBehaviour
 {
     [SerializeField] private float combo;
-    [SerializeField] private float maxCombo;
+    [SerializeField] private float maxCombo = 1500;
     [SerializeField] private ComboRank comboRank;
     [Tooltip("Combo score loss per second")]
-    [SerializeField] private float comboDrain;
+    [SerializeField] private float comboDrain = 10;
     [Tooltip("Combo score gained on a perfect hit")]
-    [SerializeField] private float comboPerHit;
+    [SerializeField] private float comboPerHit = 25;
     [Tooltip("Time threshold for a perfect hit both early or late")]
-    [SerializeField] private float perfectTimeThreshold;
+    [SerializeField] private float perfectTimeThreshold = .06f;
     
     public static ComboManager Instance { get; private set; }
     public float Combo => combo;

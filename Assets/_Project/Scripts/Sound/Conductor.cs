@@ -15,7 +15,7 @@ public class Conductor : MonoBehaviour
     [Tooltip("When the song started playing relative to DSPTime")]
     public double startTime;
 
-    [Tooltip("Current position of the song in ms")]
+    [Tooltip("Current position of the song in seconds")]
     public float songPosition;
 
     [Tooltip("Small gap at the beginning of every MP3 used for meta-data")]

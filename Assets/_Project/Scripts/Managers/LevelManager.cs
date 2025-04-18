@@ -95,9 +95,14 @@ public class LevelManager : MonoBehaviour
 
     public static void StartLevel(int newLevel)
     {
-        Instance.shieldImage = GameObject.Find("Shield").GetComponent<Image>();
-        Instance.shieldHitPoints = Instance.maxShieldHitPoints;
-        Instance.UpdateShieldUI();
+
+        GameObject shieldObject = GameObject.Find("Shield");
+        if (shieldObject != null)
+        {
+            Instance.shieldImage = shieldObject.GetComponent<Image>();
+            Instance.shieldHitPoints = Instance.maxShieldHitPoints;
+            Instance.UpdateShieldUI();
+        }
         Instance.level = newLevel;
         Instance.startTime = Time.time;
 

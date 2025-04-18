@@ -10,7 +10,6 @@ public class MeshSlicer : MonoBehaviour
 
     public void Slice(GameObject targetObject, Vector3 planePoint, Vector3 planeNormal)
     {
-        Debug.Log("reached");
         // Ensure the target object has a MeshFilter and MeshRenderer
         MeshFilter meshFilter = targetObject.GetComponent<MeshFilter>();
         MeshRenderer meshRenderer = targetObject.GetComponent<MeshRenderer>();

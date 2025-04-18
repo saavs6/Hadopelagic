@@ -41,7 +41,7 @@ public class Sword : MonoBehaviour
 
             Button btn = other.gameObject.GetComponent<Button>();
             if (btn != null) {
-                btn.Action();
+                StartCoroutine(btn.Action());
             }
         }
         else if (other.CompareTag("Boss"))

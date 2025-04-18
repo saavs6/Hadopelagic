@@ -5,16 +5,17 @@ using System.Collections;
 public class Button : MonoBehaviour
 {
     public string sceneName;
+    public int level = -1;
+    public float delay = 0f;
 
-    public void Action() {
+    public IEnumerator Action() {
+        yield return new WaitForSeconds(delay);
         if (!string.IsNullOrEmpty(sceneName)) {
-            StartCoroutine(LoadSceneWithDelay());
+            SceneManager.LoadScene(sceneName);
+        }
+        if (level >= 0) {
+            LevelManager.StartLevel(level);
         }
     }
 
-    private IEnumerator LoadSceneWithDelay() {
-        yield return new WaitForSeconds(1.5f);
-        LevelManager.StartLevel(1);
-        SceneManager.LoadScene(sceneName);
-    }
 }

@@ -37,7 +37,7 @@ public class ComboManager : MonoBehaviour
     /// Array containing threshold to reach the next combo rank. The last value is the maximum combo value.
     /// Length should be equal to length of comboRanks + 1
     /// </summary>
-    private static readonly float[] comboThresholds = { 0f, 100f, 200f, 300f, 400f, 500f, 600f, 1000f, 1500f };
+    private static readonly float[] comboThresholds = { 0f, 2000f, 4000f, 6000f, 9000f, 12000f, 15000f, 18000f, 20000f };
     private static readonly ComboRank[] comboRanks = (ComboRank[])Enum.GetValues(typeof(ComboRank));
 
     private void Awake()

@@ -7,6 +7,8 @@ public class Dash : MonoBehaviour
     public XRNode leftControllerNode = XRNode.LeftHand;
     public XRNode rightControllerNode = XRNode.RightHand;
 
+    public bool dashEnabled = true;
+
     public float preDashCoefficient = 10.0f;
     public float dragCoefficient = 10.0f;
 
@@ -23,6 +25,8 @@ public class Dash : MonoBehaviour
 
     void Update()
     {
+        if (!dashEnabled) return;
+
         bool newIsGrabbing = IsGrabbing(leftControllerNode) || IsGrabbing(rightControllerNode);
 
         if (!isGrabbing && newIsGrabbing) 

@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    public Image shieldImage;
+
     public float minionDistance = 0f;
     public bool swarm = false;
     
@@ -19,8 +19,9 @@ public class LevelManager : MonoBehaviour
     public int maxShieldHitPoints = 8;
     public float startTime;
     public float songTime;
-    public int level = -1;
+    public int level = 0;
 
+    private Image shieldImage;
     private List<SongEvent> currentEventsList;
     private AudioSource musicPlayer;
 
@@ -49,7 +50,6 @@ public class LevelManager : MonoBehaviour
         SongEvent eventData = currentEventsList[0];
         if (eventData != null && Conductor.Instance.songPosition >= eventData.time)
         {
-            Debug.Log("Next actions");
             currentEventsList.RemoveAt(0);
             foreach (var action in eventData.actions)
             {
@@ -100,6 +100,14 @@ public class LevelManager : MonoBehaviour
 
     public static void StartLevel(int newLevel)
     {
+
+        GameObject shieldObject = GameObject.Find("Shield");
+        if (shieldObject != null)
+        {
+            Instance.shieldImage = shieldObject.GetComponent<Image>();
+            Instance.shieldHitPoints = Instance.maxShieldHitPoints;
+            Instance.UpdateShieldUI();
+        }
         Instance.level = newLevel;
         Instance.startTime = Time.time;
 

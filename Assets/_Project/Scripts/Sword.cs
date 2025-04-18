@@ -1,3 +1,4 @@
+using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
 using System;
 using UnityEngine;
 
@@ -31,15 +32,17 @@ public class Sword : MonoBehaviour
 
         if (!moving) return;
 
-        if (other.CompareTag("Enemy") || other.CompareTag("Sliceable")) // Ensure the boxes are tagged as \"Box\"
+        if (other.CompareTag("Sliceable") || other.CompareTag("Enemy"))
         {
             Vector3 contactPoint = other.ClosestPoint(transform.position);
             Vector3 normal = transform.forward; // Assume slicing plane is along the sword's forward direction
 
             slicer.Slice(other.gameObject, contactPoint, normal);
-            if (audioSource != null && sliceSound != null)
-            {
-                audioSource.PlayOneShot(sliceSound); // Plays the sound once
+            audioSource.PlayOneShot(sliceSound);
+
+            Button btn = other.gameObject.GetComponent<Button>();
+            if (btn != null) {
+                StartCoroutine(btn.Action());
             }
         }
         else if (other.CompareTag("Boss"))

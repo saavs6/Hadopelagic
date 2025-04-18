@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -38,7 +39,14 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         Instance.musicPlayer = GetComponent<AudioSource>();
+        Instance.shieldImage = GameObject.Find("Shield").GetComponent<Image>();
+        Instance.shieldHitPoints = Instance.maxShieldHitPoints;
         UpdateShieldUI();
     }
 
@@ -59,17 +67,6 @@ public class LevelManager : MonoBehaviour
         Instance.songTime += Time.deltaTime;
     }
 
-    // Public methods for button clicks
-    public void AddShieldButtonClick()
-    {
-        addShield(1);
-    }
-    
-    public void RemoveShieldButtonClick()
-    {
-        removeShield(1);
-    }
-
     public static void removeShield(int hitpoints) {
         Instance.shieldHitPoints -= hitpoints;
         if (Instance.shieldHitPoints < 0) {
@@ -87,9 +84,9 @@ public class LevelManager : MonoBehaviour
     }
 
     private void UpdateShieldUI() {
-        if (shieldImage != null) {
+        if (Instance.shieldImage != null) {
             float fillAmount = (float) shieldHitPoints / maxShieldHitPoints;
-            shieldImage.fillAmount = Mathf.Clamp01(fillAmount);
+            Instance.shieldImage.fillAmount = Mathf.Clamp01(fillAmount);
         }
     }
 
@@ -101,13 +98,6 @@ public class LevelManager : MonoBehaviour
     public static void StartLevel(int newLevel)
     {
 
-        GameObject shieldObject = GameObject.Find("Shield");
-        if (shieldObject != null)
-        {
-            Instance.shieldImage = shieldObject.GetComponent<Image>();
-            Instance.shieldHitPoints = Instance.maxShieldHitPoints;
-            Instance.UpdateShieldUI();
-        }
         Instance.level = newLevel;
         Instance.startTime = Time.time;
 

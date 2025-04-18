@@ -79,7 +79,6 @@ public class ComboManager : MonoBehaviour
         //We use the length of comboRanks. Assuming designers will set the right number of thresholds
         for (var i = comboRanks.Length - 1; i >= 0; i--)
         {
-            print(comboThresholds[i]);
             if (combo < comboThresholds[i]) continue;
             if (comboRank == comboRanks[i]) return;
             //If the combo changes, fire off the event to let the ComboUI do a coroutine. Otherwise, since the rank doesn't change just return

@@ -18,6 +18,10 @@ public class Dash : MonoBehaviour
     private bool isGrabbing;
 
     private bool preDash;
+    
+    public AudioSource audioSource;
+    public AudioClip dashClip;
+    public AudioClip grabClip;
 
     void Update()
     {

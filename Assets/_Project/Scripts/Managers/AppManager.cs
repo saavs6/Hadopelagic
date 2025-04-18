@@ -15,4 +15,9 @@ public class AppManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Start()
+    {
+        LevelManager.StartLevel(1);
+    }
 }

@@ -16,12 +16,14 @@ public abstract class BaseMover : MonoBehaviour
 
     protected bool isAttacking;
     protected float nextAttackTime = 0f;
+    protected bool counterClockWise;
 
     protected virtual void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerCamera = GameObject.Find("CenterEyeAnchor").transform;
         rb = GetComponent<Rigidbody>();
+        counterClockWise = Random.value > 0.5f;
     }
 
     protected void MoveTowardsPlayer()
@@ -40,6 +42,10 @@ public abstract class BaseMover : MonoBehaviour
     {
         Vector3 toPlayer = (player.position - transform.position).normalized;
         Vector3 orbitDirection = Vector3.Cross(toPlayer, playerCamera.up).normalized;
+        if (counterClockWise)
+        {
+            orbitDirection = -orbitDirection;
+        }
         rb.AddForce(orbitDirection * orbitForce, ForceMode.Acceleration);
     }
 

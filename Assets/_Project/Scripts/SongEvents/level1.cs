@@ -11,7 +11,8 @@ public class Level1 : Level
             }),
             new SongEvent(2.5f, new Level.SongAction[] { 
             () => ActionManager.SetMinionDistance(1.5f),
-            () => ActionManager.SetBossDistance(3.0f)
+            () => ActionManager.SetBossDistance(10.0f),
+            () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(5.0f, new Level.SongAction[] { 
             () => ActionManager.SetMinionDistance(10.0f),
@@ -19,7 +20,8 @@ public class Level1 : Level
             }),
             new SongEvent(7.5f, new Level.SongAction[] { 
             () => ActionManager.SetMinionDistance(1.5f),
-            () => ActionManager.SetBossDistance(3.0f)
+            () => ActionManager.SetBossDistance(10.0f),
+            () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(10.0f, new Level.SongAction[] { 
             () => ActionManager.SetMinionDistance(10.0f),
@@ -27,15 +29,17 @@ public class Level1 : Level
             }),
             new SongEvent(12.5f, new Level.SongAction[] { 
             () => ActionManager.SetMinionDistance(1.5f),
-            () => ActionManager.SetBossDistance(3.0f)
+            () => ActionManager.SetBossDistance(10.0f),
+            () => ActionManager.SetIsSwarming(true)
             }),
             new SongEvent(15.0f, new Level.SongAction[] { 
             () => ActionManager.SetMinionDistance(10.0f),
-            () => ActionManager.SetBossDistance(15.0f)
+            () => ActionManager.SetBossDistance(15.0f),
+            () => ActionManager.SetIsSwarming(false)
             }),
             new SongEvent(17.5f, new Level.SongAction[] { 
             () => ActionManager.SetMinionDistance(1.5f),
-            () => ActionManager.SetBossDistance(3.0f)
+            () => ActionManager.SetBossDistance(10.0f)
             })
         };
     }

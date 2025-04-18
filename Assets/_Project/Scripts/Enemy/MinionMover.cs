@@ -7,6 +7,9 @@ public class MinionMover : BaseMover
     public float attackChance = 0.05f;
     public float attackFOVThreshold = 0.7f;
     public float attackCooldown = 3f;
+    
+    public bool isSwarming = false;
+    public bool active = false;
 
     public float minDistanceToPlayer = .25f;
     
@@ -53,6 +56,15 @@ public class MinionMover : BaseMover
 
     protected override void HandleAttack()
     {
+        if (LevelManager.Instance.swarm)
+        {
+            isSwarming = true;
+        }
+        else
+        {
+            isSwarming = false;
+            active = true;
+        }
         if (!isAttacking && Time.time >= nextAttackTime && ShouldAttack() && Random.value < attackChance)
         {
             isAttacking = true;
@@ -61,6 +73,11 @@ public class MinionMover : BaseMover
 
         if (isAttacking) {
             Attack();
+        }
+
+        if (isSwarming && active)
+        {
+            SwarmAttack();
         }
     }
 
@@ -76,6 +93,21 @@ public class MinionMover : BaseMover
         Invoke(nameof(ResetAttack), .25f);
     }
 
+    public void SwarmAttack()
+    {
+        Vector3 attackDirection = (player.position - transform.position).normalized;
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        float distanceRatio = Mathf.Clamp01(distanceToPlayer / 10f);
+        float dynamicAttackForce = Mathf.Lerp(baseAttackForce, maxAttackForce, distanceRatio);
+
+        rb.AddForce(10 * attackDirection * dynamicAttackForce, ForceMode.Acceleration);
+        if (distanceToPlayer < 0.3f)
+        {
+            ResetSwarm();
+        }
+    }
+
     bool ShouldAttack()
     {
         Vector3 toEnemy = (transform.position - playerCamera.position).normalized;
@@ -87,6 +119,12 @@ public class MinionMover : BaseMover
     void ResetAttack()
     {
         isAttacking = false;
+    }
+
+    void ResetSwarm()
+    {
+        isSwarming = false;
+        active = false;
     }
 
     private void OnTriggerEnter(Collider other)

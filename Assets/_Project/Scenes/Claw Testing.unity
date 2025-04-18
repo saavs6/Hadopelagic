@@ -14723,7 +14723,6 @@ MonoBehaviour:
   orbitForce: 5
   rotationSpeed: 10
   minVelocityToRotate: 0.1
-  p: {fileID: 527865171}
   whipped: 0
   distanceToPlayer: 0
   p2: {fileID: 0}
@@ -25210,9 +25209,6 @@ PrefabInstance:
       addedObject: {fileID: 1745432727}
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1745432724}
-    - targetCorrespondingSourceObject: {fileID: 100004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 527865181}
   m_SourcePrefab: {fileID: 100100000, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
 --- !u!4 &1745432718 stripped
@@ -25239,18 +25235,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df9f338034892c44ebb62d97894772f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1745432724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527865171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f3981f1fbce66469de2cfc0e618343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1745432727
@@ -26112,7 +26096,6 @@ MonoBehaviour:
   orbitForce: 3
   rotationSpeed: 2
   minVelocityToRotate: 0.1
-  p: {fileID: 527865171}
   specialAttackCooldown: 5
   attackDistance: 0.1
   tailWhipping: 0
@@ -26338,7 +26321,6 @@ MonoBehaviour:
   orbitForce: 5
   rotationSpeed: 10
   minVelocityToRotate: 0.1
-  p: {fileID: 0}
   whipped: 0
   distanceToPlayer: 0
   p2: {fileID: 0}

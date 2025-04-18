@@ -10,6 +10,7 @@ public class PHManager : MonoBehaviour
     
     public AudioSource audioSource;
     public AudioClip healSound;
+    public AudioClip damageSound;
     public AudioClip shieldSound;
     public AudioClip dangerSound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,12 +30,12 @@ public class PHManager : MonoBehaviour
             unShielded = true;
             audioSource.PlayOneShot(shieldSound);
             audioSource.PlayOneShot(dangerSound);
-            
         }
         else
         {
             currentHealth -= damage;
             LevelManager.removeShield(damage);
+            audioSource.PlayOneShot(damageSound);
         }
     }
 

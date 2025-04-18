@@ -14,6 +14,9 @@ public abstract class BaseMover : MonoBehaviour
     protected Rigidbody rb;
     protected ConsoleEdit console;
 
+    public GameObject p;
+    protected PHManager health;
+
     protected bool isAttacking;
     protected float nextAttackTime = 0f;
 
@@ -22,6 +25,7 @@ public abstract class BaseMover : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerCamera = GameObject.Find("CenterEyeAnchor").transform;
         rb = GetComponent<Rigidbody>();
+        health = p.GetComponent<PHManager>();
     }
 
     protected void MoveTowardsPlayer()

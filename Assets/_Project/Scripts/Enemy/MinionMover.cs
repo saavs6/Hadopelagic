@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class MinionMover : BaseMover
 {
-    public float baseAttackForce = 5f;
-    public float maxAttackForce = 10f;
+    public float baseAttackForce = 7.5f;
+    public float maxAttackForce = 20f;
     public float attackChance = 0.05f;
     public float attackFOVThreshold = 0.7f;
     public float attackCooldown = 3f;

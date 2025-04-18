@@ -7,6 +7,17 @@ public class MeshSlicer : MonoBehaviour
     public float drag = 1f; // Drag to gradually stop the pieces
     public float angularDrag = 0.5f; // Angular drag to gradually stop rotation
     public float separationForce = 2f; // Force to push the pieces apart
+    public GameObject player;
+    private PHManager PH;
+
+    void Start()
+    {
+        if (player == null)
+        {
+            Debug.LogError("Player object is null, lifesteal not working!.");
+        }
+        PH = player.GetComponent<PHManager>();
+    }
 
     public void Slice(GameObject targetObject, Vector3 planePoint, Vector3 planeNormal)
     {
@@ -26,6 +37,11 @@ public class MeshSlicer : MonoBehaviour
         {
             Debug.LogError("Target object has no valid mesh to slice.");
             return;
+        }
+
+        if (PH != null)
+        {
+            PH.Heal();
         }
 
         // Capture the original velocity and angular velocity before slicing

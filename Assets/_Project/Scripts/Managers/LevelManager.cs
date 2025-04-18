@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
         if (currentEventsList.Count == 0) return;
         
         SongEvent eventData = currentEventsList[0];
-        if (eventData != null && Instance.songTime >= eventData.time)
+        if (eventData != null && Conductor.Instance.songPosition >= eventData.time)
         {
             Debug.Log("Next actions");
             currentEventsList.RemoveAt(0);

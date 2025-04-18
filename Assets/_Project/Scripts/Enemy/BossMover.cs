@@ -12,6 +12,7 @@ public class BossMover : BaseMover
     public Stopwatch tester = Stopwatch.StartNew();
     public bool tailWhipping = false;
     
+    public GameObject rock;
     
     public float baseAttackForce = 1f;
     public float maxAttackForce = 30f;
@@ -90,7 +91,7 @@ public class BossMover : BaseMover
         float distanceRatio = Mathf.Clamp01(distanceToPlayer / LevelManager.Instance.bossDistance);
         float dynamicAttackForce = Mathf.Lerp(baseAttackForce, maxAttackForce, distanceRatio);
 
-        if (distanceRatio > 0.5f)
+        if (distanceRatio > 0.6f)
         {
             rb.AddForce(attackDirection * dynamicAttackForce, ForceMode.Acceleration);
         }
@@ -98,9 +99,10 @@ public class BossMover : BaseMover
         {
             rb.AddForce(attackDirection * dynamicAttackForce, ForceMode.Impulse);
         }
-        if (distanceToPlayer < 0.4f)
+        if (distanceToPlayer < 0.35f)
         {
             ResetAttack();
+            health.TakeDamage(3);
         }
     }
     void ResetAttack()
@@ -111,8 +113,8 @@ public class BossMover : BaseMover
 
     public void TailWhip()
     {
-        Vector3 towardPlayer = (transform.position - player.position).normalized;
-        GameObject NextRock = Instantiate(GameObject.Find("r"), transform.position - new Vector3(0, 1f, 0), Quaternion.identity);
+        Vector3 towardPlayer = (transform.position - player.position).normalized; 
+        GameObject NextRock = Instantiate(rock, transform.position - new Vector3(0, 1f, 0), Quaternion.identity);
         Rigidbody nrrb = NextRock.GetComponent<Rigidbody>();
         RockMover rm = NextRock.AddComponent<RockMover>();
         WaitThenDoSomething(0.5f);

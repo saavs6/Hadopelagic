@@ -160,5 +160,6 @@ MonoBehaviour:
   attackChance: 0.05
   attackFOVThreshold: 0.8
   attackCooldown: 3
+  minDistanceToPlayer: 0.25
   glowColor: {r: 1, g: 0, b: 0, a: 1}
   glowIntensity: 2

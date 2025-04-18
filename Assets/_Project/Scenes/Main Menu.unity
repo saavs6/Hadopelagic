@@ -2243,6 +2243,7 @@ MonoBehaviour:
   playerRb: {fileID: 428340939}
   leftControllerNode: 4
   rightControllerNode: 5
+  dashEnabled: 0
   preDashCoefficient: 0.75
   dragCoefficient: 0.6
 --- !u!114 &181850521
@@ -9043,7 +9044,6 @@ MonoBehaviour:
   drag: 1
   angularDrag: 0.5
   separationForce: 2
-  player: {fileID: 0}
 --- !u!4 &906942333
 Transform:
   m_ObjectHideFlags: 0
@@ -12034,12 +12034,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff81b78c78d1484bb12452860b0aedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldImage: {fileID: 0}
   minionDistance: 0
-  swarm: 0
   bossDistance: 0
-  bossAttacking: 0
-  bossTailWhipping: 0
   shieldHitPoints: 6
   maxShieldHitPoints: 8
   startTime: 0
@@ -16796,7 +16792,7 @@ Transform:
   m_GameObject: {fileID: 1660028820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.3, z: 2.285}
+  m_LocalPosition: {x: 0, y: -0.3, z: 1.891}
   m_LocalScale: {x: 1, y: 0.5, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16890,8 +16886,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Claw Testing
-  level: 1
-  delay: 1
 --- !u!54 &1660028826
 Rigidbody:
   m_ObjectHideFlags: 0

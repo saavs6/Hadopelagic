@@ -23,7 +23,7 @@ public abstract class BaseMover : MonoBehaviour
 
     protected virtual void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.Find("Lobster").transform;
         playerCamera = GameObject.Find("CenterEyeAnchor").transform;
         rb = GetComponent<Rigidbody>();
         counterClockWise = Random.value > 0.5f;

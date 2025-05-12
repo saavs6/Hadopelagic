@@ -38,4 +38,9 @@ public class ActionManager : MonoBehaviour
     {
         LevelManager.Instance.swarm = isSwarming;
     }
+
+    public static void SetPolyCount(int polyCount)
+    {
+        LevelManager.Instance.poly = polyCount;
+    }
 }

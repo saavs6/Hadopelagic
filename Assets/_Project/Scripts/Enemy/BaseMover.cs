@@ -14,6 +14,9 @@ public abstract class BaseMover : MonoBehaviour
     protected Rigidbody rb;
     protected ConsoleEdit console;
 
+    public GameObject parrySpawner;
+    protected PolygonSpawner PS;
+
     protected PHManager health;
 
     protected bool isAttacking;
@@ -27,6 +30,10 @@ public abstract class BaseMover : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         counterClockWise = Random.value > 0.5f;
         health = GameObject.FindGameObjectWithTag("Player").GetComponent<PHManager>();
+        if (parrySpawner != null)
+        {
+            PS = parrySpawner.GetComponent<PolygonSpawner>();
+        }
     }
 
     protected void MoveTowardsPlayer()

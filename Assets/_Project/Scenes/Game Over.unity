@@ -2246,6 +2246,9 @@ MonoBehaviour:
   dashEnabled: 0
   preDashCoefficient: 0.75
   dragCoefficient: 0.6
+  audioSource: {fileID: 0}
+  dashClip: {fileID: 0}
+  grabClip: {fileID: 0}
 --- !u!114 &181850521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4855,6 +4858,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8398964229525998538, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43e413d3f6a71a449b1f16e22cc279a1, type: 2}
+    - target: {fileID: -7764132924211823855, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43e413d3f6a71a449b1f16e22cc279a1, type: 2}
     - target: {fileID: -7334951474422550414, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -4883,6 +4894,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8492075437249553921, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43e413d3f6a71a449b1f16e22cc279a1, type: 2}
     - target: {fileID: 8920606011335605879, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -9141,12 +9156,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45f34ebc105ca2c41ac6c37a9b03bf20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 8
-  currentHealth: 0
   audioSource: {fileID: 870381550}
   healSound: {fileID: 8300000, guid: a8217b3203f7e484d9492aee6652c929, type: 3}
+  damageSound: {fileID: 0}
   shieldSound: {fileID: 8300000, guid: e9f57451c8c528b48b8f5dce58085678, type: 3}
   dangerSound: {fileID: 8300000, guid: ab414b423f6c0c246b2eb3845800fdb2, type: 3}
+  invisible: 0
 --- !u!1 &875975559
 GameObject:
   m_ObjectHideFlags: 0
@@ -12710,6 +12725,7 @@ MonoBehaviour:
   bossDistance: 0
   bossAttacking: 0
   bossTailWhipping: 0
+  poly: 3
   shieldHitPoints: 6
   maxShieldHitPoints: 8
   startTime: 0
@@ -14559,6 +14575,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8398964229525998538, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43e413d3f6a71a449b1f16e22cc279a1, type: 2}
+    - target: {fileID: -7764132924211823855, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43e413d3f6a71a449b1f16e22cc279a1, type: 2}
     - target: {fileID: -7334951474422550414, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
       propertyPath: m_Layer
       value: 10
@@ -14591,6 +14615,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8492075437249553921, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 43e413d3f6a71a449b1f16e22cc279a1, type: 2}
     - target: {fileID: 8920606011335605879, guid: b4f77c6a264ea884cb417cbedc239727, type: 3}
       propertyPath: m_Layer
       value: 10

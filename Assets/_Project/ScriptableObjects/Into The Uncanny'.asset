@@ -15,4 +15,4 @@ MonoBehaviour:
   songName: Into the Uncanny
   clip: {fileID: 8300000, guid: 07e1c56c26d102745bd1fadda86ad08a, type: 3}
   bpm: 160
-  offset: 0
+  offset: -0.5

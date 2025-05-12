@@ -14,7 +14,8 @@ public class LevelManager : MonoBehaviour
     public float bossDistance = 0f;
     public bool bossAttacking = false;
     public bool bossTailWhipping = false;
-    
+
+    public int poly = 3;
     
     public int shieldHitPoints = 8;
     public int maxShieldHitPoints = 8;

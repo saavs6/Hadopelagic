@@ -12,6 +12,8 @@ public class PHManager : MonoBehaviour
     public AudioClip damageSound;
     public AudioClip shieldSound;
     public AudioClip dangerSound;
+    
+    public bool areYouShore = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,19 +28,27 @@ public class PHManager : MonoBehaviour
             audioSource.PlayOneShot(shieldSound);
             SceneManager.LoadScene("Game Over");
         }
+        
+            if (damage >= LevelManager.Instance.shieldHitPoints)
+            {
+                if (!areYouShore)
+                {
+                    LevelManager.removeShield(LevelManager.Instance.shieldHitPoints);
+                }
 
-        if (damage >= LevelManager.Instance.shieldHitPoints)
-        {
-            LevelManager.removeShield(LevelManager.Instance.shieldHitPoints);
-            unShielded = true;
-            audioSource.PlayOneShot(shieldSound);
-            audioSource.PlayOneShot(dangerSound);
-        }
-        else
-        {
-            LevelManager.removeShield(damage);
-            audioSource.PlayOneShot(damageSound);
-        }
+                audioSource.PlayOneShot(shieldSound);
+                audioSource.PlayOneShot(dangerSound);
+            }
+            else
+            {
+                if (!areYouShore)
+                {
+                    LevelManager.removeShield(damage);
+                }
+
+                audioSource.PlayOneShot(damageSound);
+            }
+        
     }
 
     public IEnumerator Regen()

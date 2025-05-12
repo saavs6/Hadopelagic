@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Collections;
+using NUnit.Framework;
 using UnityEngine;
 
 public class BossMover : BaseMover
@@ -11,12 +12,19 @@ public class BossMover : BaseMover
     public bool tailWhipping = false;
     
     public GameObject rock;
+    public bool spawned = false;
     
     public float baseAttackForce = 1f;
     public float maxAttackForce = 30f;
     public float attackChance = 0.05f;
     public float attackFOVThreshold = 0.7f;
     public float attackCooldown = 3f;
+
+    public int polyCount = 3;
+
+    public AudioSource audioSource;
+    public AudioClip whipSound;
+    public AudioClip blockSound;
     
     protected override void HandleMovement()
     {
@@ -64,6 +72,7 @@ public class BossMover : BaseMover
         if (LevelManager.Instance.bossAttacking && !isAttacking)
         {
             isAttacking = true;
+            polyCount = LevelManager.Instance.poly;
         }
 
         if (isAttacking) {
@@ -89,7 +98,13 @@ public class BossMover : BaseMover
         float distanceRatio = Mathf.Clamp01(distanceToPlayer / LevelManager.Instance.bossDistance);
         float dynamicAttackForce = Mathf.Lerp(baseAttackForce, maxAttackForce, distanceRatio);
 
-        if (distanceRatio > 0.6f)
+        if (!spawned)
+        {
+            spawned = true;
+            PS.SpawnPolygon(polyCount);
+        }
+
+        if (distanceRatio > 0.375f)
         {
             rb.AddForce(attackDirection * dynamicAttackForce, ForceMode.Acceleration);
         }
@@ -97,16 +112,26 @@ public class BossMover : BaseMover
         {
             rb.AddForce(attackDirection * dynamicAttackForce, ForceMode.Impulse);
         }
-        if (distanceToPlayer < 0.35f)
+        if (distanceToPlayer < 0.225f)
         {
+            if (!PS.Success())  
+            {
+                health.TakeDamage(3);
+            }
+            else
+            {
+                audioSource.PlayOneShot(blockSound);
+            }
             ResetAttack();
-            health.TakeDamage(3);
+            
         }
     }
     void ResetAttack()
     {
         LevelManager.Instance.bossAttacking = false;
         isAttacking = false;
+        spawned = false;
+        PS.DestroyAll();
     }
 
     public void TailWhip()
@@ -116,6 +141,7 @@ public class BossMover : BaseMover
         Rigidbody nrrb = NextRock.GetComponent<Rigidbody>();
         RockMover rm = NextRock.AddComponent<RockMover>();
         WaitThenDoSomething(0.5f);
+        audioSource.PlayOneShot(whipSound);
         rm.whipped = true;
         ResetTailWhip();
     }

@@ -6,51 +6,48 @@ public class Level1 : Level
     {
         return new List<SongEvent> {
             new SongEvent(0.0f, new Level.SongAction[] { 
-            () => ActionManager.SetMinionDistance(12.5f),
+            () => ActionManager.SetMinionDistance(15.5f),
             () => ActionManager.SetBossDistance(25.0f)
             }),
             new SongEvent(15.0f, new Level.SongAction[] { 
-            () => ActionManager.SetMinionDistance(10.5f),
-            () => ActionManager.SetBossDistance(25.0f)
+            () => ActionManager.SetMinionDistance(12.5f),
+            () => ActionManager.SetBossDistance(25.0f)  
             }),
             new SongEvent(30.0f, new Level.SongAction[] { 
-            () => ActionManager.SetMinionDistance(7.5f),
+            () => ActionManager.SetMinionDistance(10f),
             () => ActionManager.SetBossDistance(25.0f)
             }),
-            new SongEvent(43.0f, new Level.SongAction[] {
+            new SongEvent(41.0f, new Level.SongAction[] {
             () => ActionManager.SetMinionDistance(4.5f),
             () => ActionManager.SetBossDistance(17.5f)
             }),
-            new SongEvent(79.0f, new Level.SongAction[] { 
-            () => ActionManager.SetBossDistance(8.0f),
+            new SongEvent(76.0f, new Level.SongAction[] { 
+            () => ActionManager.SetBossDistance(9.0f),
             () => ActionManager.SetMinionDistance(25.0f),
             () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(79.4f, new Level.SongAction[] { 
+            new SongEvent(79.0f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true)
+            }),
+            new SongEvent(82f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(80.2f, new Level.SongAction[] { 
+            new SongEvent(83f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(81.7f, new Level.SongAction[] { 
+            new SongEvent(85f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(84.35f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(84.7f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
-            }),
-            new SongEvent(86.2f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(88.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true),
+                () => ActionManager.SetIsTailWhipping(true),
             }),
-            new SongEvent(89.0f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(4.0f),
+            new SongEvent(89f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true),
             }),
-            new SongEvent(91.3f, new Level.SongAction[] { 
+            new SongEvent(90f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true),
+            }),
+            new SongEvent(91.25f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true),
             }),
             new SongEvent(93.7f, new Level.SongAction[] { 
@@ -59,38 +56,44 @@ public class Level1 : Level
             new SongEvent(94.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
             }),
-            new SongEvent(95.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true),
+            new SongEvent(95.0f, new Level.SongAction[] {  
+                () => ActionManager.SetIsCharging(true),
                 () => ActionManager.SetMinionDistance(25.0f),
             }),
             new SongEvent(97.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
             }),
-            new SongEvent(98.5f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true),
-            }),
             new SongEvent(100.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
+                () => ActionManager.SetIsCharging(true)
             }),
-            new SongEvent(101.5f, new Level.SongAction[] { 
+            new SongEvent(100.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(103.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
             }),
+            new SongEvent(103.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
+            }),
             new SongEvent(106.0f, new Level.SongAction[] { 
+                () => ActionManager.SetIsAttacking(true)
+            }),
+            new SongEvent(107.0f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
+            }),
+            new SongEvent(107.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
+            }),
+            new SongEvent(109.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(110.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(110.6f, new Level.SongAction[] { 
+            new SongEvent(112f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(111.2f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
-            }),
-            new SongEvent(114.5f, new Level.SongAction[] { 
+            new SongEvent(113f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(115.0f, new Level.SongAction[] { 
@@ -99,45 +102,39 @@ public class Level1 : Level
             new SongEvent(115.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
+            new SongEvent(116f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
+            }),
             new SongEvent(118.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
+                () => ActionManager.SetIsCharging(true)
             }),
-            new SongEvent(118.75f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
-            }),
-            new SongEvent(119.5f, new Level.SongAction[] { 
+            new SongEvent(119.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(120f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(121f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
-            }),
-            new SongEvent(121.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsSwarming(false)
             }),
             new SongEvent(124.0f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true)
+            }),
+            new SongEvent(124.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(124.75f, new Level.SongAction[] { 
+            new SongEvent(125f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(124.25f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(125.0f, new Level.SongAction[] { 
+            new SongEvent(125.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(126.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(127.0f, new Level.SongAction[] { 
-            () => ActionManager.SetBossDistance(11.0f),
+            () => ActionManager.SetBossDistance(12.0f),
             () => ActionManager.SetMinionDistance(6.0f),
             }),
             new SongEvent(132.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
+                () => ActionManager.SetPolyCount(4)
             }),
             new SongEvent(151.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true),
@@ -150,7 +147,7 @@ public class Level1 : Level
             new SongEvent(157.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(160.0f, new Level.SongAction[] { 
+            new SongEvent(159.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(163.0f, new Level.SongAction[] { 
@@ -160,7 +157,6 @@ public class Level1 : Level
                 () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(164.0f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true),
                 () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(166.0f, new Level.SongAction[] { 
@@ -171,19 +167,16 @@ public class Level1 : Level
             }),
             new SongEvent(167.0f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(169f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(169.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
                 () => ActionManager.SetIsAttacking(true),
-                () => ActionManager.SetMinionDistance(18.0f),
-                () => ActionManager.SetMinionDistance(12.0f)
             }),
-            new SongEvent(174.75f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
+            new SongEvent(173f, new Level.SongAction[] { 
+                () => ActionManager.SetPolyCount(5)
+            }),
+            new SongEvent(174f, new Level.SongAction[] { 
+                () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(176f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
@@ -191,24 +184,12 @@ public class Level1 : Level
             new SongEvent(177.25f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(178f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(178f, new Level.SongAction[] { 
-                () => ActionManager.SetIsSwarming(true)
-            }),
-            new SongEvent(178f, new Level.SongAction[] { 
-                () => ActionManager.SetPolyCount(4)
+            new SongEvent(176.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true)
             }),
             new SongEvent(181f, new Level.SongAction[] { 
                 () => ActionManager.SetIsSwarming(false),
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(181.75f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
-            }),
-            new SongEvent(182.1f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true)
+                () => ActionManager.SetIsCharging(true)
             }),
             new SongEvent(182.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
@@ -219,10 +200,10 @@ public class Level1 : Level
             new SongEvent(183.2f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(183.7f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+            new SongEvent(183.6f, new Level.SongAction[] { 
+                () => ActionManager.SetPolyCount(6)
             }),
-            new SongEvent(185.1f, new Level.SongAction[] { 
+            new SongEvent(184f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(187f, new Level.SongAction[] { 
@@ -234,50 +215,47 @@ public class Level1 : Level
             new SongEvent(190f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
+            new SongEvent(190.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
+            }),
             new SongEvent(191f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(191.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(192f, new Level.SongAction[] { 
+            new SongEvent(193.75f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(192.5f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
+            new SongEvent(195f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(196f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
+                () => ActionManager.SetPolyCount(4)
             }),
             new SongEvent(197f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(198f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(198.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(198.5f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
+            new SongEvent(201f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(202f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
+            new SongEvent(201.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(203f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+                () => ActionManager.SetIsCharging(true)
             }),
-            new SongEvent(204f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(204.5f, new Level.SongAction[] { 
+            new SongEvent(203.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(205f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
+                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(208f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
+                () => ActionManager.SetPolyCount(5)
             }),
             new SongEvent(209f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
@@ -285,124 +263,84 @@ public class Level1 : Level
             new SongEvent(210.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(211f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
+            new SongEvent(213.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(214f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
-            }),
-            new SongEvent(215f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+                () => ActionManager.SetIsCharging(true)
             }),
             new SongEvent(216.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
+            new SongEvent(217f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
+            }),
+            new SongEvent(217.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
+            }),
             new SongEvent(219f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+                () => ActionManager.SetIsCharging(true)
             }),
             new SongEvent(219.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(222f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+            new SongEvent(222.25f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true)
             }),
-            new SongEvent(222.5f, new Level.SongAction[] { 
+            new SongEvent(222.9f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
-            }),
-            new SongEvent(225f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(225.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true)
+            }),
+            new SongEvent(226f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(228f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
+            new SongEvent(230f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(231.75f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
-            }),
-            new SongEvent(232f, new Level.SongAction[] { 
+            new SongEvent(232.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(233.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(234f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
+            new SongEvent(236f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(237f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
-            }),
-            new SongEvent(238f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(239f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+            new SongEvent(238.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true)
             }),
             new SongEvent(239.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(240f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
-            }),
-            new SongEvent(244f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
-            }),
-            new SongEvent(245f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(246f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(246.5f, new Level.SongAction[] { 
+            new SongEvent(242f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true)
             }),
-            new SongEvent(240f, new Level.SongAction[] { 
-            () => ActionManager.SetMinionDistance(7.0f),
-            }),
             new SongEvent(244f, new Level.SongAction[] { 
-            () => ActionManager.SetMinionDistance(18.0f),
-            }),
-            new SongEvent(245f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true)
             }),
             new SongEvent(246f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
+                () => ActionManager.SetIsCharging(true)
             }),
-            new SongEvent(246.5f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true) 
-            }),
-            new SongEvent(247f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(7.0f),
+            new SongEvent(248f, new Level.SongAction[] { 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(250f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(18.0f),
-            }),
-            new SongEvent(250f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(251f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true)
-            }),
-            new SongEvent(251.5f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true) 
+                () => ActionManager.SetIsTailWhipping(true)
             }),
             new SongEvent(252f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true) 
+                () => ActionManager.SetIsCharging(true) 
             }),
             new SongEvent(252.5f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true) 
-            }),
-            new SongEvent(253f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true) 
             }),
             new SongEvent(253.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true) 
             }),
-            new SongEvent(254f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true),
+            new SongEvent(255f, new Level.SongAction[] {
                 () => ActionManager.SetIsAttacking(true),
-                () => ActionManager.SetMinionDistance(25.0f),
+                () => ActionManager.SetMinionDistance(35.0f),
             }),
             new SongEvent(256f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true) 
@@ -413,15 +351,14 @@ public class Level1 : Level
             new SongEvent(257f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true) 
             }),
-            new SongEvent(257.5f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true) 
+            new SongEvent(258f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true) 
             }),
-            new SongEvent(260f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true),
+            new SongEvent(261f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true),
             }),
-            new SongEvent(261, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true) 
+            new SongEvent(261.5f, new Level.SongAction[] { 
+                () => ActionManager.SetIsCharging(true) 
             }),
             new SongEvent(261.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true) 
@@ -432,9 +369,8 @@ public class Level1 : Level
             new SongEvent(262.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true) 
             }),
-            new SongEvent(263f, new Level.SongAction[] { 
-                () => ActionManager.SetIsTailWhipping(true),
-                () => ActionManager.SetIsAttacking(true),
+            new SongEvent(262.5f, new Level.SongAction[] { 
+                () => ActionManager.SetPolyCount(5) 
             }),
             new SongEvent(264f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
@@ -447,13 +383,15 @@ public class Level1 : Level
                 () => ActionManager.SetIsTailWhipping(true),
             }),
             new SongEvent(266f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true),
+                () => ActionManager.SetIsCharging(true),
             }),
             new SongEvent(267f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
             }),
             new SongEvent(267.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
+            }),
+            new SongEvent(268f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true),
             }),
             new SongEvent(269f, new Level.SongAction[] { 
@@ -470,7 +408,7 @@ public class Level1 : Level
             }),
             new SongEvent(272f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
-                () => ActionManager.SetIsAttacking(true),
+                () => ActionManager.SetIsCharging(true),
             }),
             new SongEvent(273f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
@@ -478,7 +416,7 @@ public class Level1 : Level
             new SongEvent(273.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
             }),
-            new SongEvent(274f, new Level.SongAction[] { 
+            new SongEvent(274.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true),
             }),
             new SongEvent(275.75f, new Level.SongAction[] { 
@@ -503,7 +441,7 @@ public class Level1 : Level
                 () => ActionManager.SetIsAttacking(true),
             }),
             new SongEvent(282f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true),
+                () => ActionManager.SetIsCharging(true),
             }),
             new SongEvent(284f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true),
@@ -587,7 +525,7 @@ public class Level1 : Level
                 () => ActionManager.SetIsTailWhipping(true),
             }),
             new SongEvent(300f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true),
+                () => ActionManager.SetIsCharging(true),
             }),
             new SongEvent(303f, new Level.SongAction[] { 
                 () => ActionManager.SetIsAttacking(true),
@@ -596,7 +534,7 @@ public class Level1 : Level
                 () => ActionManager.SetIsAttacking(true),
             }),
             new SongEvent(306.5f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true),
+                () => ActionManager.SetIsCharging(true),
             }),
             new SongEvent(307.5f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
@@ -620,7 +558,7 @@ public class Level1 : Level
                 () => ActionManager.SetIsTailWhipping(true),
             }),
             new SongEvent(318f, new Level.SongAction[] { 
-                () => ActionManager.SetIsAttacking(true),
+                () => ActionManager.SetIsCharging(true),
             }),
             new SongEvent(319f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
@@ -634,11 +572,10 @@ public class Level1 : Level
             new SongEvent(323f, new Level.SongAction[] { 
                 () => ActionManager.SetIsTailWhipping(true),
             }),
-            new SongEvent(324f, new Level.SongAction[] { 
-                () => ActionManager.SetMinionDistance(10.0f),
+            new SongEvent(325f, new Level.SongAction[] { 
+                () => ActionManager.SetPolyCount(7)
             }),
             new SongEvent(327f, new Level.SongAction[] { 
-                () => ActionManager.SetIsSwarming(true),
                 () => ActionManager.SetIsTailWhipping(true),
                 () => ActionManager.SetIsAttacking(true)
             }),

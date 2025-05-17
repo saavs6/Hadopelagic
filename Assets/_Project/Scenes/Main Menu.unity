@@ -5746,7 +5746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9901,7 +9901,7 @@ MonoBehaviour:
   damageSound: {fileID: 0}
   shieldSound: {fileID: 8300000, guid: e9f57451c8c528b48b8f5dce58085678, type: 3}
   dangerSound: {fileID: 8300000, guid: ab414b423f6c0c246b2eb3845800fdb2, type: 3}
-  invisible: 0
+  areYouShore: 0
 --- !u!1 &874603885
 GameObject:
   m_ObjectHideFlags: 0
@@ -13782,6 +13782,7 @@ MonoBehaviour:
   bossDistance: 0
   bossAttacking: 0
   bossTailWhipping: 0
+  bossCharging: 0
   poly: 3
   shieldHitPoints: 6
   maxShieldHitPoints: 8
@@ -22584,7 +22585,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0

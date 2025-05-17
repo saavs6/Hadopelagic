@@ -20,7 +20,7 @@ public class RockMover : BaseMover
         distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
         if (distanceToPlayer < 0.425f)
         {
-            health.TakeDamage(1);
+            health.TakeDamage(2);
             Destroy(gameObject);
             Debug.Log("hit");
         }

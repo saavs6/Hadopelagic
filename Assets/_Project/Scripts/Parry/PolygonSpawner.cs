@@ -15,11 +15,6 @@ public class PolygonSpawner : MonoBehaviour
 
     private int size = 0;
 
-    void Update()
-    {
-        Debug.Log(Success());
-    }
-
     public void SpawnPolygon(int vertexCount)
     { 
         size = vertexCount;
@@ -41,7 +36,6 @@ public class PolygonSpawner : MonoBehaviour
             Rigidbody nrrb = NextParry.GetComponent<Rigidbody>();
             polygons.Add(NextParry);
         }
-        Debug.Log("Spawned Polygon");
     }
 
     public bool Success()

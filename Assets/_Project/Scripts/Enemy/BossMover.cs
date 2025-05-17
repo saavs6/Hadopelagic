@@ -10,6 +10,7 @@ public class BossMover : BaseMover
     public float attackDistance = 0.1f;
     public Stopwatch tester = Stopwatch.StartNew();
     public bool tailWhipping = false;
+    public bool charging = false;
     
     public GameObject rock;
     public bool spawned = false;
@@ -19,6 +20,15 @@ public class BossMover : BaseMover
     public float attackChance = 0.05f;
     public float attackFOVThreshold = 0.7f;
     public float attackCooldown = 3f;
+
+    public Vector3 chargeDirection;
+    public float initDistance;
+    public bool trigger = false;
+    public Renderer renderer;
+    public bool damaged = false;
+    
+    private Material ogMaterial;
+    public Material newMaterial;
 
     public int polyCount = 3;
 
@@ -72,6 +82,7 @@ public class BossMover : BaseMover
         if (LevelManager.Instance.bossAttacking && !isAttacking)
         {
             isAttacking = true;
+            charging = false;
             polyCount = LevelManager.Instance.poly;
         }
 
@@ -87,6 +98,20 @@ public class BossMover : BaseMover
         if (tailWhipping)
         {
             TailWhip();
+        }
+
+        if (LevelManager.Instance.bossCharging && !charging)
+        {
+            charging = true;
+            chargeDirection = (player.position - transform.position);
+            initDistance = Vector3.Distance(transform.position, player.position);
+            renderer = GetComponent<Renderer>();
+            ogMaterial = renderer.material;
+        }
+
+        if (charging)
+        {
+            Charge();
         }
     }
     
@@ -104,7 +129,7 @@ public class BossMover : BaseMover
             PS.SpawnPolygon(polyCount);
         }
 
-        if (distanceRatio > 0.375f)
+        if (distanceRatio > 0.4f)
         {
             rb.AddForce(attackDirection * dynamicAttackForce, ForceMode.Acceleration);
         }
@@ -126,14 +151,6 @@ public class BossMover : BaseMover
             
         }
     }
-    void ResetAttack()
-    {
-        LevelManager.Instance.bossAttacking = false;
-        isAttacking = false;
-        spawned = false;
-        PS.DestroyAll();
-    }
-
     public void TailWhip()
     {
         Vector3 towardPlayer = (transform.position - player.position).normalized; 
@@ -145,6 +162,35 @@ public class BossMover : BaseMover
         rm.whipped = true;
         ResetTailWhip();
     }
+
+    public void Charge()
+    {
+        Vector3 attackDirection = (player.position - transform.position).normalized;
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (renderer != null)
+        {
+        //    renderer.material = newMaterial;
+        }
+        
+        if (distanceToPlayer < (initDistance*0.7f))
+        {
+            trigger = true;
+        }
+        
+        if (!damaged && distanceToPlayer < 2f)
+        {
+            damaged = true;
+            health.TakeDamage(4);
+        } 
+        else if (trigger && distanceToPlayer > initDistance*0.75f)
+        {
+            ResetCharge();
+        } 
+        else
+        {
+            rb.AddForce(chargeDirection.normalized * 8.5f, ForceMode.Impulse);
+        }
+    }
     
     IEnumerator WaitThenDoSomething(float seconds)
     {
@@ -152,9 +198,26 @@ public class BossMover : BaseMover
         // Do whatever you want after waiting
     }
 
+    
+    void ResetAttack()
+    {
+        LevelManager.Instance.bossAttacking = false;
+        isAttacking = false;
+        spawned = false;
+        PS.DestroyAll();
+    }
     void ResetTailWhip()
     {
         LevelManager.Instance.bossTailWhipping = false;
         tailWhipping = false;
+    }
+
+    void ResetCharge()
+    {
+        LevelManager.Instance.bossCharging = false;
+        charging = false;
+        trigger = false;
+        damaged = false;
+        //renderer.material = ogMaterial;
     }
 }

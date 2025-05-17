@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public float bossDistance = 0f;
     public bool bossAttacking = false;
     public bool bossTailWhipping = false;
+    public bool bossCharging = false;
 
     public int poly = 3;
     

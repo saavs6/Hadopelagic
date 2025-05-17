@@ -3286,7 +3286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 5, y: -20, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 493, y: 402}
+  m_AnchoredPosition: {x: 624, y: 441}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230098429
@@ -5942,6 +5942,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 7574667833873450752, guid: fa972362f1d54dd4b887edb87b348854, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: d247f24603507b94aa14744d644e61d2, type: 2}
     - target: {fileID: 8231752651028551484, guid: fa972362f1d54dd4b887edb87b348854, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14841,7 +14845,7 @@ GameObject:
   - component: {fileID: 1083572747}
   - component: {fileID: 1083572746}
   - component: {fileID: 1083572751}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rock
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -21889,7 +21893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 5, y: 20, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 1116, y: 384}
+  m_AnchoredPosition: {x: 1316, y: 475}
   m_SizeDelta: {x: 260, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1567540358
@@ -25289,11 +25293,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.35
+      value: -14.91
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.95
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 126d619cf4daa52469682f85c1378b4a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -25434,9 +25438,9 @@ MonoBehaviour:
   audioSource: {fileID: 1745432730}
   healSound: {fileID: 8300000, guid: a8217b3203f7e484d9492aee6652c929, type: 3}
   damageSound: {fileID: 8300000, guid: 64f00141025616545b55a6307435c98a, type: 3}
-  shieldSound: {fileID: 8300000, guid: e9f57451c8c528b48b8f5dce58085678, type: 3}
-  dangerSound: {fileID: 8300000, guid: ab414b423f6c0c246b2eb3845800fdb2, type: 3}
-  areYouShore: 0
+  shieldSound: {fileID: 8300000, guid: fa49ad6f5d2e63a4fa16d55e1ffebb7c, type: 3}
+  dangerSound: {fileID: 8300000, guid: 1538bddb84e44d143a3a56049bc79032, type: 3}
+  areYouShore: 1
 --- !u!82 &1745432730
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25450,7 +25454,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a8217b3203f7e484d9492aee6652c929, type: 3}
   m_Resource: {fileID: 8300000, guid: a8217b3203f7e484d9492aee6652c929, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.702
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -25749,6 +25753,7 @@ MonoBehaviour:
   bossDistance: 0
   bossAttacking: 0
   bossTailWhipping: 0
+  bossCharging: 0
   poly: 3
   shieldHitPoints: 8
   maxShieldHitPoints: 8
@@ -26370,8 +26375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f2a41e628c17d4a986b7fa62fae5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMoveSpeed: 4
-  maxMoveSpeed: 5
+  baseMoveSpeed: 5
+  maxMoveSpeed: 6
   moveForce: 5
   orbitForce: 3
   rotationSpeed: 2
@@ -26380,6 +26385,7 @@ MonoBehaviour:
   specialAttackCooldown: 5
   attackDistance: 0.1
   tailWhipping: 0
+  charging: 0
   rock: {fileID: 1788294729}
   spawned: 0
   baseAttackForce: 15
@@ -26387,10 +26393,15 @@ MonoBehaviour:
   attackChance: 0.05
   attackFOVThreshold: 0.7
   attackCooldown: 3
+  chargeDirection: {x: 0, y: 0, z: 0}
+  initDistance: 0
+  trigger: 0
+  renderer: {fileID: 0}
+  newMaterial: {fileID: 2100000, guid: 7a3b3d4f43418b54791c10c6b93fc548, type: 2}
   polyCount: 3
   audioSource: {fileID: 1778141273}
   whipSound: {fileID: 8300000, guid: 17ee1775c91155b44a9eb08892a4abaa, type: 3}
-  blockSound: {fileID: 8300000, guid: 694e0ee6e81393948b05f5cd93929fc7, type: 3}
+  blockSound: {fileID: 8300000, guid: fae30b2ecb96447428f3612b439569db, type: 3}
 --- !u!82 &1778141273
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26404,7 +26415,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.668
+  m_Volume: 0.514
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -26631,7 +26642,7 @@ GameObject:
   - component: {fileID: 1788294732}
   - component: {fileID: 1788294731}
   - component: {fileID: 1788294730}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rock2
   m_TagString: Sliceable
   m_Icon: {fileID: 0}
@@ -26657,7 +26668,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.12
+  m_Radius: 0.1
   m_Center: {x: -0.000108566135, y: -0.0057528727, z: 0.00027813017}
 --- !u!54 &1788294731
 Rigidbody:
@@ -26678,7 +26689,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -26730,7 +26741,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2902847290684760650, guid: fa972362f1d54dd4b887edb87b348854, type: 3}
+  - {fileID: 2100000, guid: d786d4ccd0847a64f80d21ee6b07874f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -31910,7 +31921,7 @@ Transform:
   m_GameObject: {fileID: 2138298705}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.4, y: 3.58, z: 9.53}
+  m_LocalPosition: {x: -14.77, y: 3.58, z: 34.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []

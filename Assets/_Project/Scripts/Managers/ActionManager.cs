@@ -43,4 +43,9 @@ public class ActionManager : MonoBehaviour
     {
         LevelManager.Instance.poly = polyCount;
     }
+
+    public static void SetIsCharging(bool isCharging)
+    {
+        LevelManager.Instance.bossCharging = isCharging;
+    }
 }
